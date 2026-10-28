@@ -347,5 +347,30 @@
             }
         }
     </script>
-</body>
+<!-- আরামদায়ক ও পেশাদার স্ক্রোলিং নিউজটিকার -->
+<div class="fixed bottom-0 left-0 w-full bg-slate-900/95 backdrop-blur-md text-slate-100 py-2.5 px-4 shadow-2xl z-50 border-t border-indigo-500/30 flex items-center gap-3">
+    
+    <!-- লাইভ ব্যাজ -->
+    <div class="bg-gradient-to-r from-red-600 to-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap flex items-center gap-1.5 shrink-0 shadow-sm animate-pulse">
+        <span class="w-2 h-2 bg-white rounded-full"></span> নোটিশ আপডেট
+    </div>
+    
+    <!-- চলমান টেক্সট (Marquee) -->
+    <marquee class="text-xs md:text-sm font-medium tracking-wide text-slate-200" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="5">
+        
+        <!-- নোটিশ ১ (লিংক সহ) -->
+        <span>📢 ঢাকা বিশ্ববিদ্যালয় 'ক' ইউনিটের ভর্তি পরীক্ষার সময়সূচি প্রকাশিত হয়েছে।</span>
+        <a href="https://example.com" target="_blank" class="underline text-indigo-300 hover:text-indigo-200 font-semibold ml-1 mr-8">বিস্তারিত ➔</a>
+
+        <!-- নোটিশ ২ (লিংক সহ) -->
+        <span>🚀 রাজশাহী ও চট্টগ্রাম বিশ্ববিদ্যালয় ভর্তি পরীক্ষার সার্কুলার দেখতে এখানে ট্যাপ করো।</span>
+        <a href="https://example.com" target="_blank" class="underline text-amber-300 hover:text-amber-200 font-semibold ml-1 mr-8">সার্কুলার দেখুন ➔</a>
+
+        <!-- নোটিশ ৩ (সাধারণ তথ্য) -->
+        <span>🎓 Varsity Vision-এ নিয়মিত বিষয়ভিত্তিক ফ্রি মডেল টেস্ট দিয়ে তোমার প্রস্তুতি ঝালিয়ে নাও!</span>
+        
+    </marquee>
+</div>
+            
+ </body>
 </html>

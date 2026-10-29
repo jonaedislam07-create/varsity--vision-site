@@ -605,162 +605,172 @@
     <!-- ========================================== -->
     <!-- JAVASCRIPT LOGIC & CONFIGURATION -->
     <!-- ========================================== -->
-    <script>
-        // ==========================================
-        // ⚙️ সেটিংস ও কনফিগারেশন (প্রয়োজনে এখান থেকে এডিট করবেন)
-        // ==========================================
-        const CONFIG = {
-            GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzdQNPgHwAxd-mr69K3h7aiw54baRyh4jmd7Dag2QiZE-daMM4fxz1Ff5s18WbB6N4/exec", // আপনার গুগল শিট এপিআই ওয়েব অ্যাপ লিংক
-            PAYMENT_URL: "https://your-payment-gateway-link.com", // পেমেন্ট লিংক
-            WHATSAPP_URL: "https://chat.whatsapp.com/YOUR_GROUP_LINK", // হোয়াটসঅ্যাপ গ্রুপ লিংক
-            FACEBOOK_URL: "https://www.facebook.com/profile.php?id=61576601532502", // ফেসবুক পেজ লিংক
-            
-            // কোর্স তালিকা এবং ফি (এখানে নাম বা ফি পরিবর্তন করতে পারেন)
-            COURSES: [
-                { id: "c1", name: "বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি (সকল বিষয়)", fee: 1500 },
-                { id: "c2", name: "HSC Academic Course", fee: 1000 },
-                { id: "c3", name: "ঢাকা বিশ্ববিদ্যালয় রিটেন প্রস্তুতি", fee: 800 }
-            ]
-        };
+<script>
+    // ==========================================
+    // ⚙️ সেটিংস ও কনফিগারেশন (প্রয়োজনে এখান থেকে এডিট করবেন)
+    // ==========================================
+    const CONFIG = {
+        GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzdQNPgHwAxd-mr69K3h7aiw54baRyh4jmd7Dag2QiZE-daMM4fxz1Ff5s18WbB6N4/exec", // আপনার গুগল শিট এপিআই ওয়েব অ্যাপ লিংক
+        PAYMENT_URL: "https://your-payment-gateway-link.com", // পেমেন্ট লিংক
+        WHATSAPP_URL: "https://chat.whatsapp.com/YOUR_GROUP_LINK", // হোয়াটসঅ্যাপ গ্রুপ লিংক
+        FACEBOOK_URL: "https://www.facebook.com/profile.php?id=61576601532502", // ফেসবুক পেজ লিংক
+        
+        // কোর্স তালিকা এবং ফি
+        COURSES: [
+            { id: "c1", name: "বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি (সকল বিষয়)", fee: 1500 },
+            { id: "c2", name: "HSC Academic Course", fee: 1000 },
+            { id: "c3", name: "ঢাকা বিশ্ববিদ্যালয় রিটেন প্রস্তুতি", fee: 800 }
+        ]
+    };
 
-        // ==========================================
-        // 📝 এনরোলমেন্ট ও মডাল লজিক
-        // ==========================================
-        document.addEventListener("DOMContentLoaded", function () {
+    // ==========================================
+    // 📝 এনরোলমেন্ট ও মডাল লজিক
+    // ==========================================
+    document.addEventListener("DOMContentLoaded", function () {
+        // যদি আপনার কোডে updateVarsityCard থাকে তবে এটি রান হবে, না থাকলে এরর এড়াতে ট্রাই-ক্যাচ রাখা হয়েছে
+        try {
             updateVarsityCard();
-            renderCourseCheckboxes();
+        } catch (e) {}
+        
+        renderCourseCheckboxes();
 
-            // সোশ্যাল ও পেমেন্ট লিংক সেট আপ
-            document.getElementById('paymentLinkBtn').href = CONFIG.PAYMENT_URL;
-            document.getElementById('whatsappGroupLink').href = CONFIG.WHATSAPP_URL;
-            document.getElementById('facebookGroupLink').href = CONFIG.FACEBOOK_URL;
+        // সোশ্যাল ও পেমেন্ট লিংক সেট আপ
+        const paymentBtn = document.getElementById('paymentLinkBtn');
+        const whatsappBtn = document.getElementById('whatsappGroupLink');
+        const facebookBtn = document.getElementById('facebookGroupLink');
+
+        if (paymentBtn) paymentBtn.href = CONFIG.PAYMENT_URL;
+        if (whatsappBtn) whatsappBtn.href = CONFIG.WHATSAPP_URL;
+        if (facebookBtn) facebookBtn.href = CONFIG.FACEBOOK_URL;
+    });
+
+    function renderCourseCheckboxes() {
+        const container = document.getElementById('courseCheckboxList');
+        if (!container) return; // কন্টেইনার না পেলে কোড থামিয়ে দিবে
+        
+        container.innerHTML = "";
+
+        CONFIG.COURSES.forEach((course) => {
+            const itemHtml = `
+                <label class="flex items-center justify-between p-2.5 bg-white border border-slate-200 rounded-lg cursor-pointer hover:bg-emerald-50 transition">
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" name="selectedCourse" value="${course.id}" onchange="calculateTotalFee()" class="w-4 h-4 accent-emerald-600">
+                        <span class="font-medium text-slate-800 text-sm">${course.name}</span>
+                    </div>
+                    <span class="font-bold text-emerald-600 text-sm">৳${course.fee}</span>
+                </label>
+            `;
+            container.innerHTML += itemHtml;
+        });
+        calculateTotalFee();
+    }
+
+    let currentTotalAmount = 0;
+    let selectedCourseNames = [];
+
+    function calculateTotalFee() {
+        const checkboxes = document.querySelectorAll('input[name="selectedCourse"]:checked');
+        let total = 0;
+        selectedCourseNames = [];
+
+        checkboxes.forEach((cb) => {
+            const course = CONFIG.COURSES.find(c => c.id === cb.value);
+            if (course) {
+                total += course.fee;
+                selectedCourseNames.push(course.name);
+            }
         });
 
-        function renderCourseCheckboxes() {
-            const container = document.getElementById('courseCheckboxList');
-            container.innerHTML = "";
+        currentTotalAmount = total;
+        
+        const totalDisplay = document.getElementById('totalAmountDisplay');
+        const submitBtnText = document.getElementById('submitBtnText');
 
-            CONFIG.COURSES.forEach((course) => {
-                const itemHtml = `
-                    <label class="flex items-center justify-between p-2.5 bg-white border border-slate-200 rounded-lg cursor-pointer hover:bg-emerald-50 transition">
-                        <div class="flex items-center space-x-2">
-                            <input type="checkbox" name="selectedCourse" value="${course.id}" onchange="calculateTotalFee()" class="w-4 h-4 accent-emerald-600">
-                            <span class="font-medium text-slate-800 text-sm">${course.name}</span>
-                        </div>
-                        <span class="font-bold text-emerald-600 text-sm">৳${course.fee}</span>
-                    </label>
-                `;
-                container.innerHTML += itemHtml;
-            });
-            calculateTotalFee();
+        if (totalDisplay) totalDisplay.innerText = total + " টাকা";
+        if (submitBtnText) submitBtnText.innerText = `পেমেন্ট করুন (${total} টাকা) 💳`;
+    }
+
+    function openEnrollModal() {
+        const modal = document.getElementById('enrollModal');
+        if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeEnrollModal() {
+        const modal = document.getElementById('enrollModal');
+        if (modal) modal.classList.add('hidden');
+    }
+
+    function openSuccessModal() {
+        const modal = document.getElementById('successModal');
+        if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeSuccessModal() {
+        const modal = document.getElementById('successModal');
+        if (modal) modal.classList.add('hidden');
+    }
+
+    // গুগল শিটে ডেটা সাবমিট করার ফাংশন
+    function handleEnrollment(e) {
+        e.preventDefault();
+
+        const fullNameEl = document.getElementById('fullName');
+        const mobileNumberEl = document.getElementById('mobileNumber');
+        const collegeNameEl = document.getElementById('collegeName');
+
+        const fullName = fullNameEl ? fullNameEl.value.trim() : "";
+        const mobileNumber = mobileNumberEl ? mobileNumberEl.value.trim() : "";
+        const collegeName = collegeNameEl ? collegeNameEl.value.trim() : "";
+
+        if (selectedCourseNames.length === 0) {
+            alert("দয়া করে কমপক্ষে একটি কোর্স সিলেক্ট করুন!");
+            return;
         }
 
-        let currentTotalAmount = 0;
-        let selectedCourseNames = [];
-
-        function calculateTotalFee() {
-            const checkboxes = document.querySelectorAll('input[name="selectedCourse"]:checked');
-            let total = 0;
-            selectedCourseNames = [];
-
-            checkboxes.forEach((cb) => {
-                const course = CONFIG.COURSES.find(c => c.id === cb.value);
-                if (course) {
-                    total += course.fee;
-                    selectedCourseNames.push(course.name);
-                }
-            });
-
-            currentTotalAmount = total;
-            document.getElementById('totalAmountDisplay').innerText = total + " টাকা";
-            document.getElementById('submitBtnText').innerText = `পেমেন্ট করুন (${total} টাকা) 💳`;
-        }
-
-        function openEnrollModal() {
-            document.getElementById('enrollModal').classList.remove('hidden');
-        }
-
-        function closeEnrollModal() {
-            document.getElementById('enrollModal').classList.add('hidden');
-        }
-
-        function openSuccessModal() {
-            document.getElementById('successModal').classList.remove('hidden');
-        }
-
-        function closeSuccessModal() {
-            document.getElementById('successModal').classList.add('hidden');
-        }
-
-        // গুগল শিটে ডেটা সাবমিট করার ফাংশন
-        function handleEnrollment(e) {
-            e.preventDefault();
-
-            const fullName = document.getElementById('fullName').value.trim();
-            const mobileNumber = document.getElementById('mobileNumber').value.trim();
-            const collegeName = document.getElementById('collegeName').value.trim();
-
-            if (selectedCourseNames.length === 0) {
-                alert("দয়া করে কমপক্ষে একটি কোর্স সিলেক্ট করুন!");
-                return;
-            }
-
-            const submitBtn = document.getElementById('submitBtnText');
+        const submitBtn = document.getElementById('submitBtnText');
+        if (submitBtn) {
             submitBtn.innerText = "সাবমিট হচ্ছে...";
             submitBtn.disabled = true;
-
-            const formData = {
-                fullName: fullName,
-                mobileNumber: mobileNumber,
-                collegeName: collegeName,
-                courses: selectedCourseNames.join(", "),
-                totalFee: currentTotalAmount
-            };
-
-            fetch(CONFIG.GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(() => {
-                submitBtn.innerText = "পেমেন্ট করুন 💳";
-                submitBtn.disabled = false;
-                document.getElementById('enrollmentForm').reset();
-                calculateTotalFee();
-                closeEnrollModal();
-                openSuccessModal(); // সফল বার্তা ও সোশ্যাল গ্রুপ লিংক দেখাবে
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("দুঃখিত, কোনো সমস্যা হয়েছে। আবার চেষ্টা করুন।");
-                submitBtn.innerText = "পেমেন্ট করুন 💳";
-                submitBtn.disabled = false;
-            });
         }
 
-        // ডেমো কুইজ লজিক
-        function submitQuiz(e) {
-            e.preventDefault();
-            const form = document.getElementById('quizForm');
-            const resultDiv = document.getElementById('quizResult');
-            const selected = form.q1.value;
+        const formData = {
+            fullName: fullName,
+            mobileNumber: mobileNumber,
+            collegeName: collegeName,
+            courses: selectedCourseNames.join(", "),
+            totalFee: currentTotalAmount
+        };
 
-            resultDiv.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800');
-
-            if (selected === 'b') {
-                resultDiv.classList.add('bg-emerald-100', 'text-emerald-800');
-                resultDiv.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> সঠিক উত্তর! ঢাকা বিশ্ববিদ্যালয় ১৯২১ সালে প্রতিষ্ঠিত হয়।';
-            } else if (!selected) {
-                resultDiv.classList.add('bg-rose-100', 'text-rose-800');
-                resultDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-2"></i> অনুগ্রহ করে একটি উত্তর নির্বাচন করুন।';
-            } else {
-                resultDiv.classList.add('bg-rose-100', 'text-rose-800');
-                resultDiv.innerHTML = '<i class="fa-solid fa-circle-xmark mr-2"></i> ভুল উত্তর! সঠিক উত্তর হলো: ১৯২১ সাল।';
+        fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(() => {
+            if (submitBtn) {
+                submitBtn.innerText = "পেমেন্ট করুন 💳";
+                submitBtn.disabled = false;
             }
-        }
-    </script>
+            
+            const form = document.getElementById('enrollmentForm');
+            if (form) form.reset();
+            
+            calculateTotalFee();
+            closeEnrollModal();
+            openSuccessModal(); // সফল বার্তা ও সোশ্যাল গ্রুপ লিংক দেখাবে
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("দুঃখিত, কোনো সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+            if (submitBtn) {
+                submitBtn.innerText = "পেমেন্ট করুন 💳";
+                submitBtn.disabled = false;
+            }
+        });
+    }
+</script>
 </body>
 </html>

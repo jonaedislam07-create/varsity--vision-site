@@ -120,10 +120,11 @@
         </div>
     </section>
 
-     <!-- বিশ্ববিদ্যালয় পরিচিতি ও প্রস্তুতি কার্ড সেকশন -->
+    
+<!-- বিশ্ববিদ্যালয় পরিচিতি ও প্রস্তুতি কার্ড সেকশন -->
     <div class="max-w-4xl mx-auto my-10 px-4">
         <div class="text-center mb-6">
-            <h2 class="text-2xl md:text-3xl font-extrabold text-gray-800">শীর্ষ বিশ্ববিদ্যালয় পরিচিতি ও প্রস্তুতি</h2>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-gray-800">শীर्ष বিশ্ববিদ্যালয় পরিচিতি ও প্রস্তুতি</h2>
             <p class="text-gray-500 text-sm mt-1">দেশের সেরা ১০টি বিশ্ববিদ্যালয়ের সংক্ষিপ্ত ইতিহাস জানো এবং তোমার স্বপ্নের ক্যাম্পাসের জন্য প্রস্তুতি নাও।</p>
         </div>
 
@@ -141,19 +142,30 @@
                     <div>
                         <h3 id="varsity-name" class="text-2xl font-bold text-gray-800 mb-1">ঢাকা বিশ্ববিদ্যালয় (DU)</h3>
                         <p id="varsity-est" class="text-xs font-semibold text-indigo-600 mb-3">প্রতিষ্ঠিত: ১৯২১ | 'প্রাচ্যের অক্সফোর্ড'</p>
-                        <p id="varsity-history" class="text-gray-600 text-sm leading-relaxed mb-6">
+                        <p id="varsity-history" class="text-gray-600 text-sm leading-relaxed mb-4">
                             ঢাকা বিশ্ববিদ্যালয় বাংলাদেশের প্রাচীনতম পাবলিক বিশ্ববিদ্যালয়। ১৯২১ সালে প্রতিষ্ঠার পর থেকে শিক্ষা ও গবেষণার পাশাপাশি বাংলাদেশের স্বাধীনতা সংগ্রামের প্রতিটি ধাপে এই বিশ্ববিদ্যালয়ের অবদান ঐতিহাসিক।
                         </p>
+                        
+                        <!-- নতুন যুক্ত হওয়া আবেদন যোগ্যতা বক্স (Dynamic হওয়ার জন্য) -->
+                        <div id="eligibility-box" class="hidden mb-4 p-3 bg-indigo-50 border border-indigo-100 rounded-xl text-xs text-gray-700">
+                            <h4 class="font-bold text-indigo-900 mb-1">📝 আবেদন যোগ্যতা:</h4>
+                            <p id="varsity-eligibility" class="leading-relaxed"></p>
+                        </div>
                     </div>
 
                     <!-- অ্যাকশন বাটনসমূহ -->
-                    <div>
-                        <a id="varsity-prep-btn" href="exam.html?varsity=du" class="block text-center w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-bold py-3 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="space-y-2">
+                        <!-- আবেদন যোগ্যতা দেখার নতুন বাটন -->
+                        <button type="button" onclick="toggleEligibility()" class="w-full bg-gray-100 hover:bg-gray-200 text-indigo-700 font-bold py-2.5 rounded-xl transition cursor-pointer text-sm border border-indigo-200">
+                            📋 আবেদন যোগ্যতা দেখুন
+                        </button>
+
+                        <a id="varsity-prep-btn" href="exam.html?varsity=du" class="block text-center w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-bold py-3 rounded-xl shadow-md hover:shadow-lg transition text-sm">
                             🎯 ঢাকা বিশ্ববিদ্যালয় প্রস্তুতি নিন
                         </a>
 
                         <!-- স্লাইডার কন্ট্রোল -->
-                        <div class="flex justify-between items-center mt-4">
+                        <div class="flex justify-between items-center mt-3">
                             <button type="button" onclick="prevVarsity()" class="text-gray-600 hover:text-indigo-600 text-sm font-semibold flex items-center gap-1 transition cursor-pointer px-3 py-1.5 rounded-lg hover:bg-gray-100">
                                 ⬅️ পূর্ববর্তী
                             </button>
@@ -166,7 +178,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Subjects Section -->
     <section id="subjects" class="py-12 sm:py-16 bg-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

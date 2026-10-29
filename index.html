@@ -503,40 +503,139 @@
 
      
        const universities = [
-            { name: "ঢাকা বিশ্ববিদ্যালয় (DU)", est: "প্রতিষ্ঠিত: ১৯২১ | 'প্রাচ্যের অক্সফোর্ড'", history: "ঢাকা বিশ্ববিদ্যালয় বাংলাদেশের প্রাচীনতম পাবলিক বিশ্ববিদ্যালয়। ১৯২১ সালে প্রতিষ্ঠার পর থেকে শিক্ষা ও গবেষণার পাশাপাশি বাংলাদেশের স্বাধীনতা সংগ্রামের প্রতিটি ধাপে এই বিশ্ববিদ্যালয়ের অবদান ঐতিহাসিক।", imgKey: "du", link: "exam.html?varsity=du" },
-            { name: "বুয়েট (BUET)", est: "প্রতিষ্ঠিত: ১৯৬২ | প্রকৌশল শিক্ষার শীর্ষ কেন্দ্র", history: "বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয় (BUET) দেশের প্রকৌশল ও স্থাপত্য শিক্ষার সর্বোচ্চ প্রতিষ্ঠান। এটি আন্তর্জাতিক মানের প্রকৌশলী ও কারিগরি তৈরি করতে নিরলসভাবে কাজ করে যাচ্ছে।", imgKey: "buet", link: "exam.html?varsity=buet" },
-            { name: "রাজশাহী বিশ্ববিদ্যালয় (RU)", est: "প্রতিষ্ঠিত: ১৯৫৩ | উত্তরবঙ্গের মতিহারের সবুজ প্রাঙ্গণ", history: "রাজশাহী বিশ্ববিদ্যালয় দেশের দ্বিতীয় বৃহত্তম বিশ্ববিদ্যালয়। এর বিশাল নৈসর্গিক ক্যাম্পাস, প্যারিস রোড এবং সমৃদ্ধ অ্যাকাডেমিক ঐতিহ্য উত্তরবঙ্গের শিক্ষার প্রাণকেন্দ্র হিসেবে পরিচিত।", imgKey: "ru", link: "exam.html?varsity=ru" },
-            { name: "চট্টগ্রাম বিশ্ববিদ্যালয় (CU)", est: "প্রতিষ্ঠিত: ১৯৬৬ | শাটল ট্রেনের ক্যাম্পাস", history: "প্রাকৃতিক সৌন্দর্যের আধার চট্টগ্রাম বিশ্ববিদ্যালয় দেশের অন্যতম প্রধান বিশ্ববিদ্যালয়। পাহাড় ঘেরা ক্যাম্পাস ও ঐতিহাসিক শাটল ট্রেনের ঐতিহ্য নিয়ে এটি শিক্ষার্থীদের স্বপ্নের অন্যতম ঠিকানা।", imgKey: "cu", link: "exam.html?varsity=cu" },
-            { name: "জাহাঙ্গীরনগর বিশ্ববিদ্যালয় (JU)", est: "প্রতিষ্ঠিত: ১৯৭০ | দেশের একমাত্র পূর্ণাঙ্গ আবাসিক বিশ্ববিদ্যালয়", history: "জাহাঙ্গীরনগর বিশ্ববিদ্যালয় সাংস্কৃতিক চর্চা, অতিথি পাখি এবং আবাসিক পরিবেশের জন্য বিখ্যাত। স্বাধীন বাংলাদেশের প্রথম দিকে নির্মিত এই ক্যাম্পাস শিক্ষা ও সংস্কৃতির এক অনবদ্য কেন্দ্র।", imgKey: "ju", link: "exam.html?varsity=ju" },
-            { name: "শাহজালাল বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয় (SUST)", est: "প্রতিষ্ঠিত: ১৯৯১ | প্রথম বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়", history: "শাহজালাল বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয় (শাবিপ্রবি) দেশের প্রথম ডিজিটাল ও প্রগতিশীল বিজ্ঞান বিশ্ববিদ্যালয়। তথ্যপ্রযুক্তি, গবেষণা ও উদ্ভাবনে বিশ্ববিদ্যালয়টির সুনাম রয়েছে।", imgKey: "sust", link: "exam.html?varsity=sust" },
-            { name: "বাংলাদেশ কৃষি বিশ্ববিদ্যালয় (BAU)", est: "প্রতিষ্ঠিত: ১৯৬১ | কৃষি শিক্ষার সর্বোচ্চ বিদ্যাপীঠ", history: "ময়মনসিংহে অবস্থিত এই বিশ্ববিদ্যালয় দেশের কৃষি উন্নয়ন, খাদ্য নিরাপত্তায় অসামান্য অবদান রেখে চলেছে। এটি এশিয়ার অন্যতম শ্রেষ্ঠ কৃষি বিষয়ক গবেষণা কেন্দ্র।", imgKey: "bau", link: "exam.html?varsity=bau" },
-            { name: "খুলনা বিশ্ববিদ্যালয় (KU)", est: "প্রতিষ্ঠিত: ১৯৯১ | সেশনজট মুক্ত ক্যাম্পাস", history: "সুন্দরবনের কোলঘেঁষে অবস্থিত খুলনা বিশ্ববিদ্যালয় রাজনীতিমুক্ত ও শিক্ষাবান্ধব পরিবেশের জন্য সুপরিচিত। এটি উদ্ভাবন ও আধুনিক শিক্ষাদানে প্রশংসিত।", imgKey: "ku", link: "exam.html?varsity=ku" },
-            { name: "জগন্নাথ বিশ্ববিদ্যালয় (JnU)", est: "প্রতিষ্ঠিত: ২০০৫ | পুরান ঢাকার ঐতিহ্যে ঘেরা", history: "১৮৫৮ সালের ঢাকা ব্রাহ্ম স্কুল থেকে ২০০৫ সালে বিশ্ববিদ্যালয় হিসেবে রূপ নেয় জগন্নাথ বিশ্ববিদ্যালয়। পুরান ঢাকায় অবস্থিত এই বিশ্ববিদ্যালয় প্রতিনিয়ত মানসম্মত শিক্ষা প্রদান করে আসছে।", imgKey: "jnu", link: "exam.html?varsity=jnu" },
-            { name: "ইসলামী বিশ্ববিদ্যালয় (IU)", est: "প্রতিষ্ঠিত: ১৯৭৯ | কুষ্টিয়া-ঝিনাইদহ প্রাঙ্গণ", history: "স্বাধীন বাংলাদেশের প্রথম বিশ্ববিদ্যালয় হিসেবে ঘোষিত ইসলামী বিশ্ববিদ্যালয় কুষ্টিয়ায় অবস্থিত। আধুনিক বিজ্ঞানের সাথে অন্যান্য বিদ্যার সমন্বয়ে এটি চমৎকার শিক্ষা পরিবেশ বজায় রেখেছে।", imgKey: "iu", link: "exam.html?varsity=iu" }
-        ];
+    { 
+        name: "ঢাকা বিশ্ববিদ্যালয় (DU)", 
+        est: "প্রতিষ্ঠিত: ১৯২১ | 'প্রাচ্যের অক্সফোর্ড'", 
+        history: "ঢাকা বিশ্ববিদ্যালয় বাংলাদেশের প্রাচীনতম পাবলিক বিশ্ববিদ্যালয়। ১৯২১ সালে প্রতিষ্ঠার পর থেকে শিক্ষা ও গবেষণার পাশাপাশি বাংলাদেশের স্বাধীনতা সংগ্রামের প্রতিটি ধাপে এই বিশ্ববিদ্যালয়ের অবদান ঐতিহাসিক।", 
+        eligibility: "এসএসসি ও এইচএসসি (সমমান) উভয় পরীক্ষায় জিপিএ ন্যূনতম ৩.৫০ সহ মোট জিপিএ ৭.৫০ (বিজ্ঞান), ৭.০০ (বাণিজ্য/মানবিক) থাকতে হবে।",
+        imgKey: "du", 
+        link: "exam.html?varsity=du" 
+    },
+    { 
+        name: "বুয়েট (BUET)", 
+        est: "প্রতিষ্ঠিত: ১৯৬২ | প্রকৌশল শিক্ষার শীর্ষ কেন্দ্র", 
+        history: "বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয় (BUET) দেশের প্রকৌশল ও স্থাপত্য শিক্ষার সর্বোচ্চ প্রতিষ্ঠান। এটি আন্তর্জাতিক মানের প্রকৌশলী ও কারিগরি তৈরি করতে নিরলসভাবে কাজ করে যাচ্ছে।", 
+        eligibility: "এইচএসসি পরীক্ষায় গণিত, পদার্থ ও রসায়নে জিপিএ-৫ সহ মোট জিপিএ ৫.০০ থাকতে হবে এবং প্রাক-নির্বাচনী পরীক্ষায় উত্তীর্ণ হতে হবে।",
+        imgKey: "buet", 
+        link: "exam.html?varsity=buet" 
+    },
+    { 
+        name: "রাজশাহী বিশ্ববিদ্যালয় (RU)", 
+        est: "প্রতিষ্ঠিত: ১৯৫৩ | উত্তরবঙ্গের মতিহারের সবুজ প্রাঙ্গণ", 
+        history: "রাজশাহী বিশ্ববিদ্যালয় দেশের দ্বিতীয় বৃহত্তম বিশ্ববিদ্যালয়। এর বিশাল নৈসর্গিক ক্যাম্পাস, প্যারিস রোড এবং সমৃদ্ধ অ্যাকাডেমিক ঐতিহ্য উত্তরবঙ্গের শিক্ষার প্রাণকেন্দ্র হিসেবে পরিচিত।", 
+        eligibility: "এসএসসি ও এইচএসসি উভয় পরীক্ষায় ন্যূনতম জিপিএ ৩.০০ সহ মোট জিপিএ ৭.০০ (বিজ্ঞান), ৬.৫০ (বাণিজ্য) ও ৬.০০ (মানবিক) প্রয়োজন।",
+        imgKey: "ru", 
+        link: "exam.html?varsity=ru" 
+    },
+    { 
+        name: "চট্টগ্রাম বিশ্ববিদ্যালয় (CU)", 
+        est: "প্রতিষ্ঠিত: ১৯৬৬ | শাটল ট্রেনের ক্যাম্পাস", 
+        history: "প্রাকৃতিক সৌন্দর্যের আধার চট্টগ্রাম বিশ্ববিদ্যালয় দেশের অন্যতম প্রধান বিশ্ববিদ্যালয়। পাহাড় ঘেরা ক্যাম্পাস ও ঐতিহাসিক শাটল ট্রেনের ঐতিহ্য নিয়ে এটি শিক্ষার্থীদের স্বপ্নের অন্যতম ঠিকানা।", 
+        eligibility: "বিজ্ঞান, মানবিক ও বাণিজ্য শাখার শিক্ষার্থীদের জন্য এসএসসি ও এইচএসসি মিলে আলাদাভাবে ন্যূনতম জিপিএ ৭.০০ থাকতে হবে।",
+        imgKey: "cu", 
+        link: "exam.html?varsity=cu" 
+    },
+    { 
+        name: "জাহাঙ্গীরনগর বিশ্ববিদ্যালয় (JU)", 
+        est: "প্রতিষ্ঠিত: ১৯৭০ | দেশের একমাত্র পূর্ণাঙ্গ আবাসিক বিশ্ববিদ্যালয়", 
+        history: "জাহাঙ্গীরনগর বিশ্ববিদ্যালয় সাংস্কৃতিক চর্চা, অতিথি পাখি এবং আবাসিক পরিবেশের জন্য বিখ্যাত। স্বাধীন বাংলাদেশের প্রথম দিকে নির্মিত এই ক্যাম্পাস শিক্ষা ও সংস্কৃতির এক অনবদ্য কেন্দ্র।", 
+        eligibility: "এসএসসি ও এইচএসসি উভয় পরীক্ষায় ন্যূনতম জিপিএ ৩.৫০ (বিজ্ঞান ও বাণিজ্য) এবং ৩.০০ (মানবিক) থাকতে হবে।",
+        imgKey: "ju", 
+        link: "exam.html?varsity=ju" 
+    },
+    { 
+        name: "শাহজালাল বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয় (SUST)", 
+        est: "প্রতিষ্ঠিত: ১৯৯১ | প্রথম বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়", 
+        history: "শাহজালাল বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয় (শাবিপ্রবি) দেশের প্রথম ডিজিটাল ও প্রগতিশীল বিজ্ঞান বিশ্ববিদ্যালয়। তথ্যপ্রযুক্তি, গবেষণা ও উদ্ভাবনে বিশ্ববিদ্যালয়টির সুনাম রয়েছে।", 
+        eligibility: "এসএসসি ও এইচএসসি উভয় পরীক্ষায় জিপিএ ৩.০০ সহ মোট জিপিএ ৬.৫০ (বিজ্ঞান) এবং অন্যান্য শাখার জন্য ৬.০০ থাকতে হবে।",
+        imgKey: "sust", 
+        link: "exam.html?varsity=sust" 
+    },
+    { 
+        name: "বাংলাদেশ কৃষি বিশ্ববিদ্যালয় (BAU)", 
+        est: "প্রতিষ্ঠিত: ১৯৬১ | কৃষি শিক্ষার সর্বোচ্চ বিদ্যাপীঠ", 
+        history: "ময়মনসিংহে অবস্থিত এই বিশ্ববিদ্যালয় দেশের কৃষি উন্নয়ন, খাদ্য নিরাপত্তায় অসামান্য অবদান রেখে চলেছে। এটি এশিয়ার অন্যতম শ্রেষ্ঠ কৃষি বিষয়ক গবেষণা কেন্দ্র।", 
+        eligibility: "শুধুমাত্র বিজ্ঞান শাখার শিক্ষার্থীরা আবেদন করতে পারবেন। এসএসসি ও এইচএসসি মিলে জীববিজ্ঞান, রসায়নসহ মোট জিপিএ ৯.০০ থাকতে হবে।",
+        imgKey: "bau", 
+        link: "exam.html?varsity=bau" 
+    },
+    { 
+        name: "খুলনা বিশ্ববিদ্যালয় (KU)", 
+        est: "প্রতিষ্ঠিত: ১৯৯১ | সেশনজট মুক্ত ক্যাম্পাস", 
+        history: "সুন্দরবনের কোলঘেঁষে অবস্থিত খুলনা বিশ্ববিদ্যালয় রাজনীতিমুক্ত ও শিক্ষাবান্ধব পরিবেশের জন্য সুপরিচিত। এটি উদ্ভাবন ও আধুনিক শিক্ষাদানে প্রশংসিত।", 
+        eligibility: "এসএসসি ও এইচএসসি পরীক্ষায় আলাদাভাবে ন্যূনতম জিপিএ ৩.০০ সহ মোট জিপিএ ৭.০০ (বিজ্ঞান ও বাণিজ্য) এবং ৬.৫০ (মানবিক) প্রয়োজন।",
+        imgKey: "ku", 
+        link: "exam.html?varsity=ku" 
+    },
+    { 
+        name: "জগন্নাথ বিশ্ববিদ্যালয় (JnU)", 
+        est: "প্রতিষ্ঠিত: ২০০৫ | পুরান ঢাকার ঐতিহ্যে ঘেরা", 
+        history: "১৮৫৮ সালের ঢাকা ব্রাহ্ম স্কুল থেকে ২০০৫ সালে বিশ্ববিদ্যালয় হিসেবে রূপ নেয় জগন্নাথ বিশ্ববিদ্যালয়। পুরান ঢাকায় অবস্থিত এই বিশ্ববিদ্যালয় প্রতিনিয়ত মানসম্মত শিক্ষা প্রদান করে আসছে।", 
+        eligibility: "এসএসসি ও এইচএসসি পরীক্ষায় ন্যূনতম জিপিএ ৩.০০ সহ মোট জিপিএ ৬.৫০ (বিজ্ঞান) এবং অন্যান্য ইউনিটের জন্য ৬.০০ থাকতে হবে।",
+        imgKey: "jnu", 
+        link: "exam.html?varsity=jnu" 
+    },
+    { 
+        name: "ইসলামী বিশ্ববিদ্যালয় (IU)", 
+        est: "প্রতিষ্ঠিত: ১৯৭৯ | শান্তি ও শৃঙ্খলার প্রাঙ্গণ", 
+        history: "কুষ্টিয়া ও ঝিনাইদহ জেলার সীমান্তবর্তী শান্তিডাঙ্গা-দুলালপুরে অবস্থিত দেশের প্রথম ইসলামী বিশ্ববিদ্যালয়। এখানে আধুনিক উচ্চশিক্ষার পাশাপাশি ইসলামি সংস্কৃতির চর্চা করা হয়।", 
+        eligibility: "এসএসসি ও এইচএসসি উভয় পরীক্ষায় পৃথকভাবে ন্যূনতম জিপিএ ২.৭৫ এবং মোট জিপিএ ৬.০০ (সকল শাখার জন্য প্রযোজ্য) হতে হবে।",
+        imgKey: "iu", 
+        link: "exam.html?varsity=iu" 
+    }
+];
 
-        let currentIndex = 0;
+let currentIndex = 0;
 
-        function updateVarsityCard() {
-            const v = universities[currentIndex];
-            document.getElementById('varsity-name').innerText = v.name;
-            document.getElementById('varsity-est').innerText = v.est;
-            document.getElementById('varsity-history').innerText = v.history;
-            document.getElementById('varsity-img').src = varsityImages[v.imgKey];
-            document.getElementById('varsity-tag').innerText = `${currentIndex + 1} / ${universities.length}`;
-            document.getElementById('varsity-prep-btn').innerText = `🎯 ${v.name.split(' ')[0]} প্রস্তুতি নিন`;
-            document.getElementById('varsity-prep-btn').href = v.link;
-        }
+function updateVarsityCard() {
+    const v = universities[currentIndex];
+    
+    document.getElementById("varsity-name").innerText = v.name;
+    document.getElementById("varsity-est").innerText = v.est;
+    document.getElementById("varsity-history").innerText = v.history;
+    document.getElementById("varsity-eligibility").innerText = v.eligibility;
+    document.getElementById("varsity-tag").innerText = `${currentIndex + 1} / ${universities.length}`;
+    document.getElementById("varsity-prep-btn").href = v.link;
+    
+    // কার্ড পরিবর্তন করলে যোগ্যতা বক্স বন্ধ রাখা এবং বাটন আগের অবস্থায় ফিরিয়ে আনা
+    const box = document.getElementById("eligibility-box");
+    const btn = document.getElementById("eligibility-toggle-btn");
+    
+    box.style.display = "none";
+    btn.innerHTML = "📋 আবেদন যোগ্যতা দেখুন";
+    btn.className = "w-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold py-2.5 rounded-xl transition cursor-pointer text-sm border border-indigo-200 flex items-center justify-center gap-2";
+    
+    document.getElementById("varsity-img").src = `https://picsum.photos/seed/${v.imgKey}/600/400`;
+}
 
-        function nextVarsity() {
-            currentIndex = (currentIndex + 1) % universities.length;
-            updateVarsityCard();
-        }
+function nextVarsity() {
+    currentIndex = (currentIndex + 1) % universities.length;
+    updateVarsityCard();
+}
 
-        function prevVarsity() {
-            currentIndex = (currentIndex - 1 + universities.length) % universities.length;
-            updateVarsityCard();
-        }
+function prevVarsity() {
+    currentIndex = (currentIndex - 1 + universities.length) % universities.length;
+    updateVarsityCard();
+}
+
+// সুন্দর টগল ফাংশন (ডিসপ্লে ও বাটনের টেক্সট পরিবর্তন করবে)
+function toggleEligibility() {
+    const box = document.getElementById("eligibility-box");
+    const btn = document.getElementById("eligibility-toggle-btn");
+    
+    if (box.style.display === "none" || box.style.display === "") {
+        box.style.display = "block";
+        btn.innerHTML = "❌ যোগ্যতা লুকান";
+        btn.className = "w-full bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold py-2.5 rounded-xl transition cursor-pointer text-sm border border-rose-200 flex items-center justify-center gap-2";
+    } else {
+        box.style.display = "none";
+        btn.innerHTML = "📋 আবেদন যোগ্যতা দেখুন";
+        btn.className = "w-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold py-2.5 rounded-xl transition cursor-pointer text-sm border border-indigo-200 flex items-center justify-center gap-2";
+    }
+}
+
+// পেজ লোড হওয়ার সাথে সাথে প্রথম কার্ড শো করবে
+window.onload = updateVarsityCard;
 
         // ==========================================
         // 📝 এনরোলমেন্ট ও মডাল লজিক

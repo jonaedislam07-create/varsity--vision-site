@@ -103,9 +103,9 @@
             <p class="text-sm text-slate-600 mb-6">আপনার ট্রানজ্যাকশন আইডি যাচাইয়ের জন্য জমা হয়েছে। এখন নিচের আমাদের অফিশিয়াল গ্রুপগুলোতে যুক্ত হয়ে যান:</p>
             
             <div class="space-y-3">
-                <a id="whatsappGroupLink" href="https://chat.whatsapp.com/YOUR_GROUP_LINK" target="_blank" class="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 rounded-xl transition shadow">
-                    💬 হোয়াটসঅ্যাপ গ্রুপে যুক্ত হোন
-                </a>
+               <a id="whatsappGroupLink" href="#" target="_blank" class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow transition duration-200 text-center">
+    <i class="fa-brands fa-whatsapp text-xl mr-2"></i> হোয়াটসঅ্যাপ গ্রুপে যুক্ত হন
+</a>              
                 <a id="facebookGroupLink" href="https://www.facebook.com/profile.php?id=61576601532502" target="_blank" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl transition shadow">
                     👥 ফেসবুক গ্রুপ/পেইজ
                 </a>
@@ -146,7 +146,21 @@
         document.getElementById('summaryAmount').innerText = studentData.totalAmount + " টাকা";
         document.getElementById('instructionAmount').innerText = studentData.totalAmount + " টাকা";
     });
+    // ডাইনামিক হোয়াটসঅ্যাপ গ্রুপ লিংক সেট করা
+    const courseCode = localStorage.getItem('selectedCourseCode');
+    const waGroupBtn = document.getElementById('whatsappGroupLink');
 
+    if (courseCode === 'varsity') {
+        waGroupBtn.href = "https://chat.whatsapp.com/YOUR_VARSITY_GROUP_LINK"; // ভর্তি প্রস্তুতির গ্রুপ লিংক
+    } else if (courseCode === 'hsc') {
+        waGroupBtn.href = "https://chat.whatsapp.com/YOUR_HSC_GROUP_LINK"; // HSC একাডেমিকের গ্রুপ লিংক
+    } else if (courseCode === 'du-written') {
+        waGroupBtn.href = "https://chat.whatsapp.com/YOUR_DU_WRITTEN_GROUP_LINK"; // ঢাবি রিটেনের গ্রুপ লিংক
+    } else {
+        waGroupBtn.href = "https://chat.whatsapp.com/YOUR_DEFAULT_GROUP_LINK"; // ডিফল্ট লিংক
+    }
+    
+   
     function selectGateway(gateway) {
         selectedGatewayName = gateway;
         

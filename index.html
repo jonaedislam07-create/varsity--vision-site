@@ -666,6 +666,71 @@
     }
 
     let currentTotalAmount = 0;
+<!-- ========================================== -->
+<!-- JAVASCRIPT LOGIC & CONFIGURATION -->
+<!-- ========================================== -->
+<script>
+    // ==========================================
+    // ⚙️ সেটিংস ও কনফিগারেশন (আপনার তথ্যগুলো এখানে বসাবেন)
+    // ==========================================
+    const CONFIG = {
+        // আপনার গুগল ফর্মের formResponse লিংকটি এখানে বসাবেন
+        GOOGLE_FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSf1z1Tx_df8dm3uUvLcpF3ygPF2Nn8DThYVuBN9q0CKs38L_w/viewform?usp=publish-editor", 
+        
+        // বিকাশ পার্সোনাল পেমেন্ট নাম্বার (যে নাম্বারে শিক্ষার্থীরা টাকা পাঠাবে)
+        BKASH_PERSONAL_NUMBER: "01614824987 (Personal)", 
+
+        WHATSAPP_URL: "https://chat.whatsapp.com/YOUR_GROUP_LINK", // হোয়াটসঅ্যাপ গ্রুপ লিংক
+        FACEBOOK_URL: "https://www.facebook.com/profile.php?id=61576601532502", // ফেসবুক পেজ লিংক
+        
+        // কোর্স তালিকা এবং ফি
+        COURSES: [
+            { id: "c1", name: "বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি (সকল বিষয়)", fee: 1500 },
+            { id: "c2", name: "HSC Academic Course", fee: 1000 },
+            { id: "c3", name: "ঢাকা বিশ্ববিদ্যালয় রিটেন প্রস্তুতি", fee: 800 }
+        ]
+    };
+
+    // ==========================================
+    // 📝 এনরোলমেন্ট ও মডাল লজিক
+    // ==========================================
+    document.addEventListener("DOMContentLoaded", function () {
+        try {
+            updateVarsityCard();
+        } catch (e) {}
+        
+        renderCourseCheckboxes();
+
+        // সোশ্যাল ও পেমেন্ট লিংক সেট আপ
+        const whatsappBtn = document.getElementById('whatsappGroupLink');
+        const facebookBtn = document.getElementById('facebookGroupLink');
+
+        if (whatsappBtn) whatsappBtn.href = CONFIG.WHATSAPP_URL;
+        if (facebookBtn) facebookBtn.href = CONFIG.FACEBOOK_URL;
+    });
+
+    function renderCourseCheckboxes() {
+        const container = document.getElementById('courseCheckboxList');
+        if (!container) return;
+        
+        container.innerHTML = "";
+
+        CONFIG.COURSES.forEach((course) => {
+            const itemHtml = `
+                <label class="flex items-center justify-between p-2.5 bg-white border border-slate-200 rounded-lg cursor-pointer hover:bg-emerald-50 transition">
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" name="selectedCourse" value="${course.id}" onchange="calculateTotalFee()" class="w-4 h-4 accent-emerald-600">
+                        <span class="font-medium text-slate-800 text-sm">${course.name}</span>
+                    </div>
+                    <span class="font-bold text-emerald-600 text-sm">৳${course.fee}</span>
+                </label>
+            `;
+            container.innerHTML += itemHtml;
+        });
+        calculateTotalFee();
+    }
+
+    let currentTotalAmount = 0;
     let selectedCourseNames = [];
 
     function calculateTotalFee() {
@@ -687,12 +752,19 @@
         const submitBtnText = document.getElementById('submitBtnText');
 
         if (totalDisplay) totalDisplay.innerText = total + " টাকা";
-        if (submitBtnText) submitBtnText.innerText = `পেমেন্ট করুন (${total} টাকা) 💳`;
+        if (submitBtnText) submitBtnText.innerText = `পেমেন্ট সম্পন্ন করুন (${total} টাকা) 💳`;
     }
 
     function openEnrollModal() {
         const modal = document.getElementById('enrollModal');
-        if (modal) modal.classList.remove('hidden');
+        if (modal) {
+            modal.classList.remove('hidden');
+            // পেমেন্ট মডালে বিকাশ নাম্বার শো করার জন্য (যদি আপনার এইচটিএমএলে bkashNumberDisplay আইডি থাকে)
+            const bkashNumEl = document.getElementById('bkashNumberDisplay');
+            if (bkashNumEl) {
+                bkashNumEl.innerText = CONFIG.BKASH_PERSONAL_NUMBER;
+            }
+        }
     }
 
     function closeEnrollModal() {
@@ -710,48 +782,55 @@
         if (modal) modal.classList.add('hidden');
     }
 
-    // গুগল শিটে ডেটা সাবমিট করার ফাংশন
+    // গুগল ফর্মে ডেটা সাবমিট এবং TrxID ভ্যালিডেশন লজিক
     function handleEnrollment(e) {
         e.preventDefault();
 
         const fullNameEl = document.getElementById('fullName');
         const mobileNumberEl = document.getElementById('mobileNumber');
         const collegeNameEl = document.getElementById('collegeName');
+        const trxIdEl = document.getElementById('trxId'); // ফর্মে TrxID ইনপুট ফিল্ডের আইডি
 
         const fullName = fullNameEl ? fullNameEl.value.trim() : "";
         const mobileNumber = mobileNumberEl ? mobileNumberEl.value.trim() : "";
         const collegeName = collegeNameEl ? collegeNameEl.value.trim() : "";
+        const trxId = trxIdEl ? trxIdEl.value.trim().toUpperCase() : "";
 
         if (selectedCourseNames.length === 0) {
             alert("দয়া করে কমপক্ষে একটি কোর্স সিলেক্ট করুন!");
             return;
         }
 
+        // বিকাশ ট্রানজ্যাকশন আইডি (TrxID) ১০ ডিজিটের ফরম্যাট চেক
+        const bKashRegex = /^[A-Z0-9]{10}$/i;
+        if (trxId && !bKashRegex.test(trxId)) {
+            alert("দয়া করে সঠিক ১০ ডিজিটের বিকাশ ট্রানজ্যাকশন আইডি (TrxID) দিন!");
+            return;
+        }
+
         const submitBtn = document.getElementById('submitBtnText');
         if (submitBtn) {
-            submitBtn.innerText = "সাবমিট হচ্ছে...";
+            submitBtn.innerText = "যাচাই ও সাবমিট হচ্ছে...";
             submitBtn.disabled = true;
         }
 
-        const formData = {
-            fullName: fullName,
-            mobileNumber: mobileNumber,
-            collegeName: collegeName,
-            courses: selectedCourseNames.join(", "),
-            totalFee: currentTotalAmount
-        };
+        // গুগল ফর্মের এন্ট্রি আইডিগুলো এখানে আপনার ফর্ম অনুযায়ী বসবে
+        const formData = new FormData();
+        formData.append("entry.111111111", fullName);     // নামের entry ID
+        formData.append("entry.222222222", mobileNumber); // মোবাইল নাম্বারের entry ID
+        formData.append("entry.333333333", collegeName);  // কলেজের entry ID
+        formData.append("entry.444444444", selectedCourseNames.join(", ")); // কোর্সের entry ID
+        formData.append("entry.555555555", currentTotalAmount + " টাকা"); // মোট টাকার entry ID
+        formData.append("entry.666666666", trxId);        // TrxID এর entry ID
 
-        fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+        fetch(CONFIG.GOOGLE_FORM_URL, {
             method: "POST",
             mode: "no-cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
+            body: formData
         })
         .then(() => {
             if (submitBtn) {
-                submitBtn.innerText = "পেমেন্ট করুন 💳";
+                submitBtn.innerText = `পেমেন্ট সম্পন্ন করুন (${currentTotalAmount} টাকা) 💳`;
                 submitBtn.disabled = false;
             }
             
@@ -760,17 +839,19 @@
             
             calculateTotalFee();
             closeEnrollModal();
-            openSuccessModal(); // সফল বার্তা ও সোশ্যাল গ্রুপ লিংক দেখাবে
+            openSuccessModal(); // সফল বার্তা ও গ্রুপ লিংক দেখাবে
         })
         .catch(error => {
             console.error("Error:", error);
             alert("দুঃখিত, কোনো সমস্যা হয়েছে। আবার চেষ্টা করুন।");
             if (submitBtn) {
-                submitBtn.innerText = "পেমেন্ট করুন 💳";
+                submitBtn.innerText = `পেমেন্ট সম্পন্ন করুন (${currentTotalAmount} টাকা) 💳`;
                 submitBtn.disabled = false;
             }
         });
     }
 </script>
+</body>
+</html>
 </body>
 </html>

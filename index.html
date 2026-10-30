@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Varsity Vision - বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি</title>
-    <!-- Google Fonts (Noto Serif Bengali) -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Hind Siliguri for Bengali) -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Noto Serif Bengali', serif;
+            font-family: 'Hind Siliguri', sans-serif;
         }
     </style>
 </head>
@@ -42,7 +42,7 @@
                 </div>
                 <!-- Top Enroll Button -->
                 <div>
-                    <button type="button" onclick="openEnrollModal()" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white text-base sm:text-lg font-bold px-6 py-3 rounded-lg shadow-lg transition inline-flex items-center justify-center cursor-pointer">
+                    <button type="button" onclick="selectCourseAndEnroll('varsity', 'বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি')" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white text-base sm:text-lg font-bold px-6 py-3 rounded-lg shadow-lg transition inline-flex items-center justify-center cursor-pointer">
                         <i class="fa-solid fa-user-plus mr-1"></i> এনরোল করুন
                     </button>
                 </div>
@@ -73,7 +73,7 @@
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <button type="button" onclick="openEnrollModal()" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white text-base sm:text-lg font-bold px-6 py-3 rounded-lg shadow-lg transition inline-flex items-center justify-center cursor-pointer">
+                <button type="button" onclick="selectCourseAndEnroll('varsity', 'বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি')" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white text-base sm:text-lg font-bold px-6 py-3 rounded-lg shadow-lg transition inline-flex items-center justify-center cursor-pointer">
                     আজই এনরোল করুন <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
                 <a href="#exam" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white text-base sm:text-lg font-bold px-6 py-3 rounded-lg shadow-lg border border-slate-600 transition inline-flex items-center justify-center">
@@ -117,7 +117,7 @@
             </div>
         </div>
     </section>
-
+    
     <!-- বিশ্ববিদ্যালয় পরিচিতি ও প্রস্তুতি কার্ড সেকশন -->
     <div class="max-w-4xl mx-auto my-10 px-4">
         <div class="text-center mb-6">
@@ -170,103 +170,93 @@
     </div>
 
     <!-- Subjects Section -->
-    <section id="subjects" class="py-16 sm:py-24 bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-12 sm:mb-16">
-                <span class="inline-block bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-3 shadow-sm backdrop-blur-md">
-                    <i class="fa-solid fa-graduation-cap mr-1"></i> সিলেবাস ও পাঠ্যসূচি
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">বিষয়ভিত্তিক প্রস্তুতি</h2>
-                <p class="text-slate-300 mt-3 text-base sm:text-lg max-w-2xl mx-auto">ভর্তি পরীক্ষার প্রধান বিষয়সমূহের সহজ এবং সুনির্দিষ্ট পাঠ্যসূচি নিয়ে সাজানো আমাদের প্রিমিয়াম সেগমেন্ট</p>
+    <section id="subjects" class="py-12 sm:py-16 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">বিষয়ভিত্তিক প্রস্তুতি</h2>
+                <p class="text-slate-600 mt-2 text-base sm:text-lg">ভর্তি পরীক্ষার প্রধান বিষয়সমূহের সহজ এবং সুনির্দিষ্ট পাঠ্যসূচি</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Bangla Card -->
-                <div class="bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-emerald-900/30 transition-all duration-300 transform hover:-translate-y-1.5 p-6 border border-emerald-500/30 flex flex-col justify-between relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-400 to-teal-500"></div>
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition border-t-4 border-emerald-500 flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 bg-emerald-500/20 border border-emerald-500/40 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold mb-5 shadow-inner group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 text-xl font-bold mb-4">
                             <i class="fa-solid fa-language"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-white">বাংলা</h3>
-                        <p class="text-slate-300 text-sm mb-5 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-2">বাংলা</h3>
+                        <p class="text-slate-600 text-sm mb-4">
                             ব্যাকরণ, প্রথম পত্রের গুরুত্বপূর্ণ পাঠসমূহ, সাহিত্য এবং নির্মিতি অংশের বিশেষ টেকনিক ও শর্টকাট।
                         </p>
-                        <span class="inline-block bg-emerald-950 text-emerald-300 text-xs font-bold px-3 py-1.5 rounded-lg mb-6 border border-emerald-800/60">ব্যাকরণ ও সাহিত্য</span>
+                        <span class="inline-block bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded mb-4">ব্যাকরণ ও সাহিত্য</span>
                     </div>
-                    <div class="pt-4 border-t border-slate-700/60">
-                        <a href="bangla.html" class="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 px-4 rounded-xl transition shadow-md hover:shadow-emerald-500/20">
+                    <div class="border-t pt-3 mt-2">
+                        <a href="bangla.html" class="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 px-3 rounded-lg transition shadow">
                             <i class="fa-solid fa-book-open-reader"></i> লেকচার শিট ও সেগমেন্ট দেখুন <i class="fa-solid fa-arrow-right ml-1"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- English Card -->
-                <div class="bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-indigo-900/30 transition-all duration-300 transform hover:-translate-y-1.5 p-6 border border-indigo-500/30 flex flex-col justify-between relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-400 to-blue-500"></div>
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition border-t-4 border-indigo-500 flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 bg-indigo-500/20 border border-indigo-500/40 rounded-xl flex items-center justify-center text-indigo-400 text-2xl font-bold mb-5 shadow-inner group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 text-xl font-bold mb-4">
                             <i class="fa-solid fa-spell-check"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-white">ইংরেজি</h3>
-                        <p class="text-slate-300 text-sm mb-5 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-2">ইংরেজি</h3>
+                        <p class="text-slate-600 text-sm mb-4">
                             Grammar Rules, Critical Vocabulary, Reading Comprehension এবং Written অংশের বিশেষ প্রস্তুতি।
                         </p>
-                        <span class="inline-block bg-indigo-950 text-indigo-300 text-xs font-bold px-3 py-1.5 rounded-lg mb-6 border border-indigo-800/60">Grammar & Vocabulary</span>
+                        <span class="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded mb-4">Grammar & Vocabulary</span>
                     </div>
-                    <div class="pt-4 border-t border-slate-700/60">
-                        <a href="english.html" class="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs py-3 px-4 rounded-xl transition shadow-md hover:shadow-indigo-500/20">
+                    <div class="border-t pt-3 mt-2">
+                        <a href="english.html" class="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs py-2.5 px-3 rounded-lg transition shadow">
                             <i class="fa-solid fa-book-open-reader"></i> লেকচার শিট ও সেগমেন্ট দেখুন <i class="fa-solid fa-arrow-right ml-1"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- GK Card -->
-                <div class="bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-amber-900/30 transition-all duration-300 transform hover:-translate-y-1.5 p-6 border border-amber-500/30 flex flex-col justify-between relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 to-orange-500"></div>
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition border-t-4 border-amber-500 flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 bg-amber-500/20 border border-amber-500/40 rounded-xl flex items-center justify-center text-amber-400 text-2xl font-bold mb-5 shadow-inner group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">
+                        <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600 text-xl font-bold mb-4">
                             <i class="fa-solid fa-earth-americas"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-white">সাধারণ জ্ঞান</h3>
-                        <p class="text-slate-300 text-sm mb-5 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-2">সাধারণ জ্ঞান</h3>
+                        <p class="text-slate-600 text-sm mb-4">
                             বাংলাদেশ ও আন্তর্জাতিক বিষয়াবলি, সাম্প্রতিক ঘটনাবলি এবং বিশ্ববিদ্যালয় কেন্দ্রিক সাধারণ জ্ঞান।
                         </p>
-                        <span class="inline-block bg-amber-950 text-amber-300 text-xs font-bold px-3 py-1.5 rounded-lg mb-6 border border-amber-800/60">বাংলাদেশ ও আন্তর্জাতিক</span>
+                        <span class="inline-block bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded mb-4">বাংলাদেশ ও আন্তর্জাতিক</span>
                     </div>
-                    <div class="pt-4 border-t border-slate-700/60">
-                        <a href="gk.html" class="flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs py-3 px-4 rounded-xl transition shadow-md hover:shadow-amber-500/20">
+                    <div class="border-t pt-3 mt-2">
+                        <a href="gk.html" class="flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs py-2.5 px-3 rounded-lg transition shadow">
                             <i class="fa-solid fa-book-open-reader"></i> লেকচার শিট ও সেগমেন্ট দেখুন <i class="fa-solid fa-arrow-right ml-1"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Online Exam Card -->
-                <div class="bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-purple-900/30 transition-all duration-300 transform hover:-translate-y-1.5 p-6 border border-purple-500/30 flex flex-col justify-between relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-purple-400 to-indigo-500"></div>
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition border-t-4 border-purple-500 flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 bg-purple-500/20 border border-purple-500/40 rounded-xl flex items-center justify-center text-purple-400 text-2xl font-bold mb-5 shadow-inner group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-xl font-bold mb-4">
                             <i class="fa-solid fa-laptop-code"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-white">অনলাইন পরীক্ষা</h3>
-                        <p class="text-slate-300 text-sm mb-5 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-2">অনলাইন পরীক্ষা</h3>
+                        <p class="text-slate-600 text-sm mb-4">
                             বিষয়ভিত্তিক মডেল টেস্ট এবং পূর্ণাঙ্গ কুইজে অংশ নিয়ে নিজের ভর্তি প্রস্তুতি যাচাই করো।
                         </p>
-                        <span class="inline-block bg-purple-950 text-purple-300 text-xs font-bold px-3 py-1.5 rounded-lg mb-6 border border-purple-800/60">মডেল টেস্ট ও কুইজ</span>
+                        <span class="inline-block bg-purple-50 text-purple-700 text-xs font-semibold px-2.5 py-1 rounded mb-4">মডেল টেস্ট ও কুইজ</span>
                     </div>
-                    <div class="pt-4 border-t border-slate-700/60">
-                        <a href="exam.html" class="flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs py-3 px-4 rounded-xl transition shadow-md hover:shadow-purple-500/20">
+                    <div class="border-t pt-3 mt-2">
+                        <a href="exam.html" class="flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs py-2.5 px-3 rounded-lg transition shadow">
                             <i class="fa-solid fa-book-open-reader"></i> এক্সাম সেগমেন্ট দেখুন <i class="fa-solid fa-arrow-right ml-1"></i>
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-        
+
     <!-- Motivational Guidance & Advertisement Section -->
     <section id="motivation" class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-gradient-to-r from-emerald-900 to-teal-950 rounded-2xl text-white p-6 sm:p-12 shadow-2xl border border-emerald-700/50">
@@ -282,10 +272,10 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <!-- ১. বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি -->
+                <!-- কার্ড ১: বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি -->
                 <div class="bg-white text-slate-800 rounded-2xl shadow-xl overflow-hidden flex flex-col justify-between border border-slate-200 transition transform hover:-translate-y-1 hover:shadow-2xl">
                     <div>
-                        <div class="h-48 overflow-hidden relative bg-slate-200">
+                        <div class="h-48 overflow-hidden relative">
                             <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="University Admission Banner" class="w-full h-full object-cover">
                             <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">পপুলার কোর্স</span>
                         </div>
@@ -307,21 +297,21 @@
                     </div>
                 </div>
 
-                <!-- ২. HSC একাডেমিক -->
+                <!-- কার্ড ২: HSC একাডেমিক -->
                 <div class="bg-white text-slate-800 rounded-2xl shadow-xl overflow-hidden flex flex-col justify-between border border-slate-200 transition transform hover:-translate-y-1 hover:shadow-2xl">
                     <div>
-                        <div class="h-48 overflow-hidden relative bg-slate-200">
+                        <div class="h-48 overflow-hidden relative">
                             <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80" alt="HSC Academic Banner" class="w-full h-full object-cover">
-                            <span class="absolute top-3 right-3 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">একাডেমিক</span>
+                            <span class="absolute top-3 right-3 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">একাডেমিক স্পেশাল</span>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-bold text-2xl mb-2 text-slate-900">HSC একাডেমিক প্রস্তুতি</h3>
+                            <h3 class="font-bold text-2xl mb-2 text-slate-900">HSC একাডেমিক</h3>
                             <p class="text-slate-600 text-sm mb-4 leading-relaxed">
-                                একাদশ ও দ্বাদশ শ্রেণীর প্রতিটি বিষয়ের বেসিক থেকে শুরু করে বোর্ড পরীক্ষার উপযোগী পূর্ণাঙ্গ প্রস্তুতি ও গাইডলাইন।
+                                এইচএসসি পরীক্ষার প্রতিটি বিষয়ের বেসিক শক্ত করার জন্য অধ্যায়ভিত্তিক কনসেপ্ট ক্লাস, সিকিউ ও এমসিকিউ স্পেশাল সলভ ক্লাস।
                             </p>
                             <div class="flex items-center text-indigo-700 text-xs font-semibold space-x-3 mb-4">
-                                <span><i class="fa-solid fa-circle-check mr-1"></i> কনসেপ্ট ক্লিয়ারেন্স</span>
-                                <span><i class="fa-solid fa-circle-check mr-1"></i> মানসম্মত নোট</span>
+                                <span><i class="fa-solid fa-circle-check mr-1"></i> বেসিক ক্লিয়ারেন্স</span>
+                                <span><i class="fa-solid fa-circle-check mr-1"></i> মডেল টেস্ট</span>
                             </div>
                         </div>
                     </div>
@@ -332,20 +322,20 @@
                     </div>
                 </div>
 
-                <!-- ৩. ঢাকা বিশ্ববিদ্যালয় রিটেন -->
+                <!-- কার্ড ৩: ঢাকা বিশ্ববিদ্যালয় রিটেন -->
                 <div class="bg-white text-slate-800 rounded-2xl shadow-xl overflow-hidden flex flex-col justify-between border border-slate-200 transition transform hover:-translate-y-1 hover:shadow-2xl">
                     <div>
-                        <div class="h-48 overflow-hidden relative bg-slate-200">
-                            <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=800&q=80" alt="DU Written Banner" class="w-full h-full object-cover">
-                            <span class="absolute top-3 right-3 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">স্পেশাল ব্যাচ</span>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" alt="DU Written Banner" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">স্পেশাল রিটেন</span>
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-2xl mb-2 text-slate-900">ঢাকা বিশ্ববিদ্যালয় রিটেন</h3>
                             <p class="text-slate-600 text-sm mb-4 leading-relaxed">
-                                ঢাবি ভর্তি পরীক্ষার লিখিত অংশের ভীতি দূর করতে এবং সঠিক কাঠামোগত উত্তর লেখার বিশেষ টেকনিক নিয়ে রিটেন ব্যাচ।
+                                ঢাবি ভর্তি পরীক্ষার লিখিত অংশের ভীতি দূর করতে এবং সঠিক কাঠামোগত উত্তর লেখার বিশেষ টেকনিক নিয়ে রিটেন প্রস্তুতি ব্যাচ।
                             </p>
                             <div class="flex items-center text-amber-700 text-xs font-semibold space-x-3 mb-4">
-                                <span><i class="fa-solid fa-circle-check mr-1"></i> লাইভ রিটেন এক্সাম</span>
+                                <span><i class="fa-solid fa-circle-check mr-1"></i> রিটেন সাজেশন্স</span>
                                 <span><i class="fa-solid fa-circle-check mr-1"></i> খাতা মূল্যায়ন</span>
                             </div>
                         </div>
@@ -361,28 +351,16 @@
         </div>
     </section>
 
-    <!-- Enrollment CTA Section -->
-    <section id="enroll" class="py-12 sm:py-16 bg-emerald-50 border-t border-slate-200 text-center">
-        <div class="max-w-3xl mx-auto px-4">
-            <span class="bg-emerald-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full tracking-wider">এনরোলমেন্ট</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 mb-4">তোমার ভর্তি প্রক্রিয়া সম্পন্ন করতে নিচের বাটনে ক্লিক করো</h2>
-            <p class="text-slate-600 mb-8 text-sm sm:text-base">আমাদের আধুনিক মডালের মাধ্যমে খুব সহজেই তোমার তথ্য জমা দিয়ে যুক্ত হয়ে যাও।</p>
-            <button type="button" onclick="openEnrollModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-lg sm:text-xl font-bold px-8 py-3.5 sm:px-10 sm:py-4 rounded-xl shadow-lg transition inline-flex items-center justify-center cursor-pointer">
-                <i class="fa-solid fa-file-pen mr-2"></i> অনলাইনে এনরোল করুন
-            </button>
-        </div>
-    </section>
-
-    <!-- Unified Script Controller -->
+    <!-- জাভাস্ক্রিপ্ট কন্ট্রোলার -->
     <script>
-        // বিশ্ববিদ্যালয় স্লাইডার স্ক্রিপ্ট
+        // ১. বিশ্ববিদ্যালয় স্লাইডার স্ক্রিপ্ট
         (function() {
             const universities = [
                 { 
                     name: "ঢাকা বিশ্ববিদ্যালয় (DU)", 
                     est: "প্রতিষ্ঠিত: ১৯২১ | 'প্রাচ্যের অক্সফোর্ড'", 
                     history: "ঢাকা বিশ্ববিদ্যালয় বাংলাদেশের প্রাচীনতম পাবলিক বিশ্ববিদ্যালয়। ১৯২১ সালে প্রতিষ্ঠার পর থেকে শিক্ষা ও গবেষণার পাশাপাশি বাংলাদেশের স্বাধীনতা সংগ্রামের প্রতিটি ধাপে এই বিশ্ববিদ্যালয়ের অবদান ঐতিহাসিক।", 
-                    eligibility: "এসএসসি ও এইচএসসি উভয় পরীক্ষায় জিপিএ ন্যূনতম ৩.৫০ সহ মোট জিপিএ ৭.৫০ (বিজ্ঞান), ৭.০০ (বাণিজ্য/মানবিক) থাকতে হবে.",
+                    eligibility: "এসএসসি ও এইচএসসি উভয় পরীক্ষায় জিপিএ ন্যূনতম ৩.৫০ সহ মোট জিপিএ ৭.৫০ (বিজ্ঞান), ৭.০০ (বাণিজ্য/মানবিক) থাকতে হবে।",
                     img: "du.png",
                     link: "exam.html?varsity=du" 
                 },
@@ -511,37 +489,10 @@
             updateCard();
         })();
 
-        // ২. এনরোলমেন্ট এবং কোর্স সিলেকশন কন্ট্রোল স্ক্রিপ্ট
-        function openEnrollModal() {
-            localStorage.setItem('selectedCourseCode', 'varsity');
-            localStorage.setItem('selectedCourseName', 'বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি');
-            
-            // সাময়িক ডেটা তৈরি করে পেমেন্ট পেজে পাঠানো যাতে পেমেন্ট ফর্মে কোনো সমস্যা না হয়
-            const dummyEnrollment = {
-                fullName: "শিক্ষার্থী",
-                mobileNumber: "01XXXXXXXXX",
-                collegeName: "প্রযোজ্য নয়",
-                courses: ["বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি"],
-                totalAmount: "1000"
-            };
-            localStorage.setItem('varsityVisionEnrollment', JSON.stringify(dummyEnrollment));
-            
-            window.location.href = "payment.html?course=varsity";
-        }
-
+        // ২. ডাইনামিক কোর্স সিলেকশন ফাংশন (যা সরাসরি পেমেন্ট পেজে পাঠাবে এবং পেমেন্ট পেজের ফর্ম থেকে গুগল ফর্মে ডেটা যাবে)
         function selectCourseAndEnroll(courseCode, courseName) {
             localStorage.setItem('selectedCourseCode', courseCode);
             localStorage.setItem('selectedCourseName', courseName);
-            
-            const dummyEnrollment = {
-                fullName: "শিক্ষার্থী",
-                mobileNumber: "01XXXXXXXXX",
-                collegeName: "প্রযোজ্য নয়",
-                courses: [courseName],
-                totalAmount: "1000"
-            };
-            localStorage.setItem('varsityVisionEnrollment', JSON.stringify(dummyEnrollment));
-            
             window.location.href = "payment.html?course=" + courseCode;
         }
     </script>

@@ -792,6 +792,15 @@ function submitQuiz(event) {
     }
 </script>
     
+<script>
+    // কোর্স সিলেক্ট করে পেমেন্ট পেজে রিডাইরেক্ট করার ফাংশন
+    function selectCourseAndEnroll(courseCode, courseName) {
+        localStorage.setItem('selectedCourseCode', courseCode);
+        localStorage.setItem('selectedCourseName', courseName);
+        
+        // পেমেন্ট পেজে পাঠিয়ে দেওয়া
+        window.location.href = "payment.html?course=" + courseCode;
+    }
 </script>
 
 </body>

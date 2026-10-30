@@ -93,14 +93,14 @@
         </div>
     </div>
 
-    <!-- Success Modal -->
+ <!-- Success Modal (যা পেমেন্ট সফল হওয়ার পরেই শুধু আসবে) -->
     <div id="successModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 text-center">
             <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
                 <i class="fa-solid fa-check"></i>
             </div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-2">এনরোলমেন্ট সফল হয়েছে!</h3>
-            <p class="text-sm text-slate-600 mb-6">আপনার পেমেন্ট ও তথ্য সফলভাবে জমা হয়েছে। পরবর্তী কার্যক্রমে যুক্ত হওয়ার জন্য নিচের গ্রুপগুলোতে যুক্ত হয়ে যান:</p>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">পেমেন্ট ও এনরোলমেন্ট সফল হয়েছে!</h3>
+            <p class="text-sm text-slate-600 mb-6">আপনার ট্রানজ্যাকশন আইডি যাচাইয়ের জন্য জমা হয়েছে। এখন নিচের আমাদের অফিশিয়াল গ্রুপগুলোতে যুক্ত হয়ে যান:</p>
             
             <div class="space-y-3">
                 <a id="whatsappGroupLink" href="https://chat.whatsapp.com/YOUR_GROUP_LINK" target="_blank" class="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 rounded-xl transition shadow">
@@ -115,8 +115,8 @@
                 হোমপেজে ফিরে যান
             </button>
         </div>
-    </div>
-
+    </div>       
+    
 <script>
     // পেমেন্ট কনফিগারেশন: বিকাশ ও নগদ একই নম্বর, রকেটে চাইলে আলাদা দিতে পারেন
     const PAYMENT_CONFIG = {

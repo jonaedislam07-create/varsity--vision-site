@@ -775,6 +775,22 @@ function submitQuiz(event) {
         resultDiv.innerHTML = "❌ ভুল উত্তর! সঠিক উত্তর হবে **১৯২১ সাল**। আবার চেষ্টা করুন।";
     }
 }
+
+<script>
+    // কোর্স সিলেক্ট করে এনরোলমেন্ট বা পেমেন্টে যাওয়ার ফাংশন
+    function selectCourseAndEnroll(courseCode, courseName) {
+        // ব্রাউজারে কোর্স কোড এবং নাম সেভ করে রাখা
+        localStorage.setItem('selectedCourseCode', courseCode);
+        localStorage.setItem('selectedCourseName', courseName);
+        
+        // চাইলে সরাসরি পেমেন্ট পেজে বা আপনার এনরোলমেন্ট মডালে পাঠাতে পারেন
+        // উদাহরণস্বরূপ, payment.html এ রিডাইরেক্ট করতে চাইলে:
+        window.location.href = "payment.html?course=" + courseCode;
+        
+        // অথবা যদি মডাল ওপেন করতে চান:
+        // openEnrollModal();
+    }
+</script>
     
 </script>
 

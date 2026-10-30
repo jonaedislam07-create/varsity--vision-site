@@ -517,18 +517,17 @@
         <p class="text-xs mt-1 text-slate-300 font-medium">সম্পাদনা : জুনায়েদ তনয়</p>
     </footer>
   
-    
     <!-- ========================================== -->
     <!-- ENROLLMENT MODAL HTML -->
     <!-- ========================================== -->
     <div id="enrollModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 sm:p-8 relative my-8 max-h-[90vh] overflow-y-auto">
-            <button type="button" onclick="closeEnrollModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl font-bold">&times;</button>
+            <button type="button" onclick="closeEnrollModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl font-bold cursor-pointer">&times;</button>
             
             <h3 class="text-2xl font-bold text-slate-900 mb-2"><i class="fa-solid fa-graduation-cap text-emerald-600 mr-2"></i>Varsity Vision এনরোলমেন্ট</h3>
-            <p class="text-sm text-slate-600 mb-4">প্রথমে আমাদের <span class="font-bold text-emerald-600" id="bkashNumberDisplay">01614824987</span> নম্বরে 'Send Money' করে TrxID দিন।</p>
+            <p class="text-sm text-slate-600 mb-4">প্রয়োজনীয় তথ্য পূরণ করে পেমেন্ট পেজে এগিয়ে যান।</p>
 
-            <form id="enrollmentForm" onsubmit="handleEnrollment(event)" class="space-y-4">
+            <form id="enrollmentForm" onsubmit="proceedToPayment(event)" class="space-y-4">
                 <div>
                     <label class="block text-sm font-semibold text-slate-700 mb-1">আপনার পূর্ণ নাম *</label>
                     <input type="text" id="fullName" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="আপনার নাম লিখুন">
@@ -545,12 +544,6 @@
                     </div>
                 </div>
 
-                <!-- বিকাশ ট্রানজ্যাকশন আইডি ফিল্ড (যা আগে মিসিং ছিল) -->
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1">বিকাশ ট্রানজ্যাকশন আইডি (TrxID) *</label>
-                    <input type="text" id="trxId" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:outline-none uppercase" placeholder="যেমন: 9H8G7F6E5D">
-                </div>
-
                 <div>
                     <label class="block text-sm font-semibold text-slate-700 mb-1">কোর্স নির্বাচন করুন (একাধিক সিলেক্ট করা যাবে) *</label>
                     <div id="courseCheckboxList" class="space-y-2 border border-slate-200 p-3 rounded-xl max-h-40 overflow-y-auto bg-slate-50">
@@ -565,38 +558,14 @@
 
                 <div class="pt-2">
                     <button type="submit" id="submitBtnText" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition cursor-pointer">
-                        পেমেন্ট সম্পন্ন করুন (০ টাকা) 💳
+                        পেমেন্ট পেজে এগিয়ে যান 💳
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Success / Post-Submission Modal -->
-    <div id="successModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 text-center">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
-                <i class="fa-solid fa-check"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-2">এনরোলমেন্ট সফল হয়েছে!</h3>
-            <p class="text-sm text-slate-600 mb-6">আপনার পেমেন্ট ও তথ্য সফলভাবে জমা হয়েছে। পরবর্তী কার্যক্রমে যুক্ত হওয়ার জন্য নিচের গ্রুপগুলোতে যুক্ত হয়ে যান:</p>
-            
-            <div class="space-y-3">
-                <a id="whatsappGroupLink" href="#" target="_blank" class="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 rounded-xl transition shadow">
-                    💬 হোয়াটসঅ্যাপ গ্রুপে যুক্ত হোন
-                </a>
-                <a id="facebookGroupLink" href="#" target="_blank" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl transition shadow">
-                    👥 ফেসবুক গ্রুপ/পেইজ
-                </a>
-            </div>
-
-            <button type="button" onclick="closeSuccessModal()" class="mt-6 text-slate-500 hover:text-slate-800 text-sm font-semibold underline cursor-pointer">
-                বন্ধ করুন
-            </button>
-        </div>
-    </div>
-
-    <!-- ফিক্সড নিউজটিকার (Marquee) -->
+    <!-- ফিক্সড নিউজটিকার (Marquee) - যদি আপনার আগের কোডে থাকে -->
     <div class="fixed bottom-0 left-0 w-full bg-slate-900/95 backdrop-blur-md text-slate-100 py-3 px-4 shadow-2xl z-40 border-t border-indigo-500/30 flex items-center gap-3">
         <div class="bg-gradient-to-r from-red-600 to-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap flex items-center gap-1.5 shrink-0 shadow-sm animate-pulse">
             <span class="w-2 h-2 bg-white rounded-full"></span> VISION আপডেট 
@@ -611,13 +580,6 @@
 <!-- ========================================== -->
 <script>
     const CONFIG = {
-        // আপনার গুগল ফর্মের লিংক (viewform এর জায়গায় formResponse বসানো হয়েছে)
-        GOOGLE_FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSf1z1Tx_df8dm3uUvLcpF3ygPF2Nn8DThYVuBN9q0CKs38L_w/formResponse", 
-        
-        BKASH_PERSONAL_NUMBER: "01614824987 (Personal)", 
-        WHATSAPP_URL: "https://chat.whatsapp.com/YOUR_GROUP_LINK",
-        FACEBOOK_URL: "https://www.facebook.com/profile.php?id=61576601532502",
-        
         COURSES: [
             { id: "c1", name: "বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি (সকল বিষয়)", fee: 1000 },
             { id: "c2", name: "HSC Academic Course", fee: 500 },
@@ -631,14 +593,6 @@
         } catch (e) {}
         
         renderCourseCheckboxes();
-
-        const whatsappBtn = document.getElementById('whatsappGroupLink');
-        const facebookBtn = document.getElementById('facebookGroupLink');
-        const bkashNumEl = document.getElementById('bkashNumberDisplay');
-
-        if (whatsappBtn) whatsappBtn.href = CONFIG.WHATSAPP_URL;
-        if (facebookBtn) facebookBtn.href = CONFIG.FACEBOOK_URL;
-        if (bkashNumEl) bkashNumEl.innerText = CONFIG.BKASH_PERSONAL_NUMBER;
     });
 
     function renderCourseCheckboxes() {
@@ -684,7 +638,7 @@
         const submitBtnText = document.getElementById('submitBtnText');
 
         if (totalDisplay) totalDisplay.innerText = total + " টাকা";
-        if (submitBtnText) submitBtnText.innerText = `পেমেন্ট সম্পন্ন করুন (${total} টাকা) 💳`;
+        if (submitBtnText) submitBtnText.innerText = `পেমেন্ট পেজে এগিয়ে যান (${total} টাকা) 💳`;
     }
 
     function openEnrollModal() {
@@ -697,79 +651,31 @@
         if (modal) modal.classList.add('hidden');
     }
 
-    function openSuccessModal() {
-        const modal = document.getElementById('successModal');
-        if (modal) modal.classList.remove('hidden');
-    }
-
-    function closeSuccessModal() {
-        const modal = document.getElementById('successModal');
-        if (modal) modal.classList.add('hidden');
-    }
-
-    function handleEnrollment(e) {
+    // তথ্যগুলো লোকালস্টোরেজে সেভ করে payment.html এ রিডাইরেক্ট করার ফাংশন
+    function proceedToPayment(e) {
         e.preventDefault();
 
         const fullName = document.getElementById('fullName').value.trim();
         const mobileNumber = document.getElementById('mobileNumber').value.trim();
         const collegeName = document.getElementById('collegeName').value.trim();
-        const trxId = document.getElementById('trxId').value.trim().toUpperCase();
 
         if (selectedCourseNames.length === 0) {
             alert("দয়া করে কমপক্ষে একটি কোর্স সিলেক্ট করুন!");
             return;
         }
 
-        // ১০ ডিজিটের বিকাশ TrxID ভ্যালিডেশন
-        const bKashRegex = /^[A-Z0-9]{10}$/i;
-        if (!bKashRegex.test(trxId)) {
-            alert("দয়া করে সঠিক ১০ ডিজিটের বিকাশ ট্রানজ্যাকশন আইডি (TrxID) দিন!");
-            return;
-        }
+        const enrollmentData = {
+            fullName,
+            mobileNumber,
+            collegeName,
+            courses: selectedCourseNames,
+            totalAmount: currentTotalAmount
+        };
 
-        const submitBtn = document.getElementById('submitBtnText');
-        if (submitBtn) {
-            submitBtn.innerText = "যাচাই ও সাবমিট হচ্ছে...";
-            submitBtn.disabled = true;
-        }
-
-        // গুগল ফর্মের এন্ট্রি আইডিগুলো বসানোর জায়গা
-        const formData = new FormData();
-        formData.append("entry.111111111", fullName);     // নামের entry ID
-        formData.append("entry.222222222", mobileNumber); // মোবাইল নাম্বারের entry ID
-        formData.append("entry.333333333", collegeName);  // কলেজের entry ID
-        formData.append("entry.444444444", selectedCourseNames.join(", ")); // কোর্সের entry ID
-        formData.append("entry.555555555", currentTotalAmount + " টাকা"); // মোট টাকার entry ID
-        formData.append("entry.666666666", trxId);        // TrxID এর entry ID
-
-        fetch(CONFIG.GOOGLE_FORM_URL, {
-            method: "POST",
-            mode: "no-cors",
-            body: formData
-        })
-        .then(() => {
-            if (submitBtn) {
-                submitBtn.innerText = `পেমেন্ট সম্পন্ন করুন (${currentTotalAmount} টাকা) 💳`;
-                submitBtn.disabled = false;
-            }
-            
-            const form = document.getElementById('enrollmentForm');
-            if (form) form.reset();
-            
-            calculateTotalFee();
-            closeEnrollModal();
-            openSuccessModal();
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("দুঃখিত, কোনো সমস্যা হয়েছে। আবার চেষ্টা করুন।");
-            if (submitBtn) {
-                submitBtn.innerText = `পেমেন্ট সম্পন্ন করুন (${currentTotalAmount} টাকা) 💳`;
-                submitBtn.disabled = false;
-            }
-        });
+        // ব্রাউজারে সাময়িকভাবে ডেটা রেখে পেমেন্ট পেজে পাঠানো
+        localStorage.setItem('varsityVisionEnrollment', JSON.stringify(enrollmentData));
+        window.location.href = "payment.html";
     }
 </script>
-
 </body>
 </html>

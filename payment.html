@@ -72,7 +72,7 @@
                         </button>
                     </div>
                 </li>
-                <li>লেনদেন সফল হওয়ার পর প্রাপ্ত <strong class="text-slate-900">TrxID</strong> টি নিচের বক্সে দিন।</li>
+                <li>লেনদেন সফল হওয়ার পর প্রাপ্ত <strong class="text-slate-900">TrxID</strong> টি নিচের বক্সে দিন।</li>
             </ol>
         </div>
 
@@ -89,23 +89,24 @@
         </form>
 
         <div class="text-center mt-4">
-            <a href="index.html" class="text-xs text-slate-500 hover:text-slate-800 underline">← মূল ওয়েবসাইটে ফিরে যান</a>
+            <a href="index.html" class="text-xs text-slate-500 hover:text-slate-800 underline">← মূল ওয়েবসাইটে ফিরে যান</a>
         </div>
     </div>
 
- <!-- Success Modal (যা পেমেন্ট সফল হওয়ার পরেই শুধু আসবে) -->
+    <!-- Success Modal (যা পেমেন্ট সফল হওয়ার পরেই শুধু আসবে) -->
     <div id="successModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 text-center">
             <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
                 <i class="fa-solid fa-check"></i>
             </div>
             <h3 class="text-2xl font-bold text-slate-900 mb-2">পেমেন্ট ও এনরোলমেন্ট সফল হয়েছে!</h3>
-            <p class="text-sm text-slate-600 mb-6">আপনার ট্রানজ্যাকশন আইডি যাচাইয়ের জন্য জমা হয়েছে। এখন নিচের আমাদের অফিশিয়াল গ্রুপগুলোতে যুক্ত হয়ে যান:</p>
+            <p class="text-sm text-slate-600 mb-6">আপনার ট্রানজ্যাকশন আইডি যাচাইয়ের জন্য জমা হয়েছে। এখন নিচের আমাদের অফিশিয়াল গ্রুপগুলোতে যুক্ত হয়ে যান:</p>
             
             <div class="space-y-3">
-               <a id="whatsappGroupLink" href="#" target="_blank" class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow transition duration-200 text-center">
-    <i class="fa-brands fa-whatsapp text-xl mr-2"></i> হোয়াটসঅ্যাপ গ্রুপে যুক্ত হন
-</a>              
+                <a id="whatsappGroupLink" href="#" target="_blank" class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow transition duration-200 text-center">
+                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i> হোয়াটসঅ্যাপ গ্রুপে যুক্ত হন
+                </a>
+                
                 <a id="facebookGroupLink" href="https://www.facebook.com/profile.php?id=61576601532502" target="_blank" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl transition shadow">
                     👥 ফেসবুক গ্রুপ/পেইজ
                 </a>
@@ -115,7 +116,7 @@
                 হোমপেজে ফিরে যান
             </button>
         </div>
-    </div>       
+    </div>        
     
 <script>
     // পেমেন্ট কনফিগারেশন: বিকাশ ও নগদ একই নম্বর, রকেটে চাইলে আলাদা দিতে পারেন
@@ -134,7 +135,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         const stored = localStorage.getItem('varsityVisionEnrollment');
         if (!stored) {
-            alert("কোনো তথ্য পাওয়া যায়নি! দয়া করে আবার ফর্ম পূরণ করুন।");
+            alert("কোনো তথ্য পাওয়া যায়নি! দয়া করে আবার ফর্ম পূরণ করুন।");
             window.location.href = "index.html";
             return;
         }
@@ -145,22 +146,24 @@
         document.getElementById('summaryCourses').innerText = studentData.courses.join(", ");
         document.getElementById('summaryAmount').innerText = studentData.totalAmount + " টাকা";
         document.getElementById('instructionAmount').innerText = studentData.totalAmount + " টাকা";
-    });
-    // ডাইনামিক হোয়াটসঅ্যাপ গ্রুপ লিংক সেট করা
-    const courseCode = localStorage.getItem('selectedCourseCode');
-    const waGroupBtn = document.getElementById('whatsappGroupLink');
 
-    if (courseCode === 'varsity') {
-        waGroupBtn.href = "https://chat.whatsapp.com/YOUR_VARSITY_GROUP_LINK"; // ভর্তি প্রস্তুতির গ্রুপ লিংক
-    } else if (courseCode === 'hsc') {
-        waGroupBtn.href = "https://chat.whatsapp.com/YOUR_HSC_GROUP_LINK"; // HSC একাডেমিকের গ্রুপ লিংক
-    } else if (courseCode === 'du-written') {
-        waGroupBtn.href = "https://chat.whatsapp.com/YOUR_DU_WRITTEN_GROUP_LINK"; // ঢাবি রিটেনের গ্রুপ লিংক
-    } else {
-        waGroupBtn.href = "https://chat.whatsapp.com/YOUR_DEFAULT_GROUP_LINK"; // ডিফল্ট লিংক
-    }
+        // ডাইনামিক হোয়াটসঅ্যাপ গ্রুপ লিংক সেট করা
+        const courseCode = localStorage.getItem('selectedCourseCode');
+        const waGroupBtn = document.getElementById('whatsappGroupLink');
+
+        if (waGroupBtn) {
+            if (courseCode === 'varsity') {
+                waGroupBtn.href = "https://chat.whatsapp.com/YOUR_VARSITY_GROUP_LINK"; // ভর্তি প্রস্তুতির গ্রুপ লিংক
+            } else if (courseCode === 'hsc') {
+                waGroupBtn.href = "https://chat.whatsapp.com/YOUR_HSC_GROUP_LINK"; // HSC একাডেমিকের গ্রুপ লিংক
+            } else if (courseCode === 'du-written') {
+                waGroupBtn.href = "https://chat.whatsapp.com/YOUR_DU_WRITTEN_GROUP_LINK"; // ঢাবি রিটেনের গ্রুপ লিংক
+            } else {
+                waGroupBtn.href = "https://chat.whatsapp.com/YOUR_DEFAULT_GROUP_LINK"; // ডিফল্ট লিংক
+            }
+        }
+    });
     
-   
     function selectGateway(gateway) {
         selectedGatewayName = gateway;
         
@@ -185,13 +188,13 @@
     function copyNumber() {
         const numText = document.getElementById('merchantNumberText').innerText;
         navigator.clipboard.writeText(numText).then(() => {
-            alert("সফলভাবে নম্বরটি কপি হয়েছে: " + numText);
+            alert("সফলভাবে নম্বরটি কপি হয়েছে: " + numText);
         }).catch(err => {
             console.error('Failed to copy: ', err);
         });
     }
 
-  function submitFinalPayment(e) {
+    function submitFinalPayment(e) {
         e.preventDefault();
         const trxId = document.getElementById('trxIdInput').value.trim().toUpperCase();
 
@@ -209,11 +212,11 @@
         // গুগল ফর্মে ডেটা সাবমিট করার প্রস্তুতি
         const formData = new FormData();
         formData.append("entry.111111111", studentData.fullName);     
-        formData.append("entry.222222222", studentData.mobileNumber); 
-        formData.append("entry.333333333", studentData.collegeName);  
-        formData.append("entry.444444444", studentData.courses.join(", ")); 
-        formData.append("entry.555555555", studentData.totalAmount + " টাকা"); 
-        formData.append("entry.666666666", `[${selectedGatewayName.toUpperCase()}] ${trxId}`); // কোন মাধ্যমে পেমেন্ট হয়েছে তা সহ TrxID
+        formData.append("entry.222222222", studentData.mobileNumber);  
+        formData.append("entry.333333333", studentData.collegeName);   
+        formData.append("entry.444444444", studentData.courses.join(", "));  
+        formData.append("entry.555555555", studentData.totalAmount + " টাকা");  
+        formData.append("entry.666666666", `[${selectedGatewayName.toUpperCase()}] ${trxId}`); // কোন মাধ্যমে পেমেন্ট হয়েছে তা সহ TrxID
 
         fetch(PAYMENT_CONFIG.GOOGLE_FORM_URL, {
             method: "POST",
@@ -221,7 +224,7 @@
             body: formData
         })
         .then(() => {
-            // পেমেন্ট সফলভাবে জমা হওয়ার পরই লোকালস্টোরেজ ক্লিয়ার হবে এবং সাকসেস মডাল ওপেন হবে
+            // পেমেন্ট সফলভাবে জমা হওয়ার পরই লোকালস্টোরেজ ক্লিয়ার হবে এবং সাকসেস মডাল ওপেন হবে
             localStorage.removeItem('varsityVisionEnrollment');
             document.getElementById('successModal').classList.remove('hidden');
         })
@@ -232,6 +235,7 @@
             submitBtn.disabled = false;
         });
     }
+</script>
 
 </body>
 </html>

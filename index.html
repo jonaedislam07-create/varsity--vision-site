@@ -176,6 +176,88 @@
         </div>
     </section>
 
+<!-- দেশের সেরা ১০টি পাবলিক বিশ্ববিদ্যালয় পরিচিতি স্লাইডার -->
+<section id="top-varsities" class="py-12 bg-slate-100">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="text-center mb-8">
+            <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">ক্যাম্পাস ইনফো</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-2">পাবলিক বিশ্ববিদ্যালয় পরিচিতি ও গাইডলাইন</h2>
+            <p class="text-slate-600 text-sm mt-1">স্বপ্নের ক্যাম্পাসের সংক্ষিপ্ত ইতিহাস জানো এবং সেরা প্রস্তুতির দিকে এগিয়ে যাও</p>
+        </div>
+
+        <!-- কার্ড ডিজাইন -->
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
+            <div class="flex flex-col md:flex-row">
+                <!-- ছবি -->
+                <div class="md:w-1/2 h-56 md:h-auto overflow-hidden relative bg-slate-800">
+                    <img id="home-varsity-img" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80" alt="University" class="w-full h-full object-cover">
+                    <span id="home-varsity-tag" class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">১ / ১০</span>
+                </div>
+
+                <!-- তথ্য -->
+                <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between">
+                    <div>
+                        <h3 id="home-varsity-name" class="text-2xl font-bold text-slate-900 mb-1">ঢাকা বিশ্ববিদ্যালয় (DU)</h3>
+                        <p id="home-varsity-est" class="text-xs font-semibold text-emerald-600 mb-3">প্রতিষ্ঠিত: ১৯২১ | 'প্রাচ্যের অক্সফোর্ড'</p>
+                        <p id="home-varsity-history" class="text-slate-600 text-sm leading-relaxed mb-4">
+                            ঢাকা বিশ্ববিদ্যালয় বাংলাদেশের প্রাচীনতম পাবলিক বিশ্ববিদ্যালয়। ১৯২১ সালে প্রতিষ্ঠার পর থেকে শিক্ষা ও গবেষণার পাশাপাশি বাংলাদেশের স্বাধীনতা সংগ্রামের প্রতিটি ধাপে এই বিশ্ববিদ্যালয়ের অবদান ঐতিহাসিক।
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <a href="varsities.html" class="block text-center w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow transition text-sm">
+                            <i class="fa-solid fa-graduation-cap mr-1"></i> সকল ১০টি বিশ্ববিদ্যালয়ের বিস্তারিত ও যোগ্যতা দেখুন
+                        </a>
+
+                        <!-- নেভিগেশন বাটন -->
+                        <div class="flex justify-between items-center pt-1">
+                            <button type="button" onclick="prevHomeVarsity()" class="text-slate-600 hover:text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-slate-100 transition cursor-pointer">
+                                <i class="fa-solid fa-arrow-left mr-1"></i> পূর্ববর্তী
+                            </button>
+                            <button type="button" onclick="nextHomeVarsity()" class="text-slate-600 hover:text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-slate-100 transition cursor-pointer">
+                                পরবর্তী <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- হোমপেজ স্ক্রিপ্ট (index.html-এর নিচের <script> ট্যাগে যোগ করুন) -->
+<script>
+    const homeVarsities = [
+        { name: "ঢাকা বিশ্ববিদ্যালয় (DU)", est: "প্রতিষ্ঠিত: ১৯২১ | 'প্রাচ্যের অক্সফোর্ড'", history: "ঢাকা বিশ্ববিদ্যালয় বাংলাদেশের প্রাচীনতম পাবলিক বিশ্ববিদ্যালয়। ১৯২১ সালে প্রতিষ্ঠার পর থেকে শিক্ষা ও গবেষণার পাশাপাশি বাংলাদেশের স্বাধীনতা সংগ্রামের প্রতিটি ধাপে এই বিশ্ববিদ্যালয়ের অবদান ঐতিহাসিক।", img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80" },
+        { name: "বুয়েট (BUET)", est: "প্রতিষ্ঠিত: ১৯৬২ | প্রকৌশল শিক্ষার শীর্ষ কেন্দ্র", history: "বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয় (BUET) দেশের প্রকৌশল ও স্থাপত্য শিক্ষার সর্বোচ্চ প্রতিষ্ঠান। এটি আন্তর্জাতিক মানের প্রকৌশলী ও প্রযুক্তিবিদ তৈরি করতে কাজ করে যাচ্ছে।", img: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80" },
+        { name: "রাজশাহী বিশ্ববিদ্যালয় (RU)", est: "প্রতিষ্ঠিত: ১৯৫৩ | মতিহারের সবুজ প্রাঙ্গণ", history: "রাজশাহী বিশ্ববিদ্যালয় দেশের দ্বিতীয় বৃহত্তম বিশ্ববিদ্যালয়। এর বিশাল নৈসর্গিক ক্যাম্পাস, প্যারিস রোড এবং সমৃদ্ধ অ্যাকাডেমিক ঐতিহ্য উত্তরবঙ্গের শিক্ষার প্রাণকেন্দ্র।", img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" },
+        { name: "চট্টগ্রাম বিশ্ববিদ্যালয় (CU)", est: "প্রতিষ্ঠিত: ১৯৬৬ | শাটল ট্রেনের ক্যাম্পাস", history: "প্রাকৃতিক সৌন্দর্যের আধার চট্টগ্রাম বিশ্ববিদ্যালয় দেশের অন্যতম প্রধান বিশ্ববিদ্যালয়। পাহাড় ঘেরা ক্যাম্পাস ও ঐতিহাসিক শাটল ট্রেনের ঐতিহ্য নিয়ে এটি অন্যতম সেরা বিদ্যাপীঠ।", img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" },
+        { name: "জাহাঙ্গীরনগর বিশ্ববিদ্যালয় (JU)", est: "প্রতিষ্ঠিত: ১৯৭০ | একমাত্র পূর্ণাঙ্গ আবাসিক বিশ্ববিদ্যালয়", history: "জাহাঙ্গীরনগর বিশ্ববিদ্যালয় সাংস্কৃতিক চর্চা, অতিথি পাখি এবং আবাসিক পরিবেশের জন্য বিখ্যাত। স্বাধীন বাংলাদেশের প্রথম দিকে নির্মিত এই ক্যাম্পাস শিক্ষা ও সংস্কৃতির অনবদ্য কেন্দ্র।", img: "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=800&q=80" }
+    ];
+
+    let currentHomeIndex = 0;
+
+    function updateHomeVarsity() {
+        const v = homeVarsities[currentHomeIndex];
+        document.getElementById('home-varsity-name').innerText = v.name;
+        document.getElementById('home-varsity-est').innerText = v.est;
+        document.getElementById('home-varsity-history').innerText = v.history;
+        document.getElementById('home-varsity-img').src = v.img;
+        document.getElementById('home-varsity-tag').innerText = `${currentHomeIndex + 1} / ${homeVarsities.length}`;
+    }
+
+    function nextHomeVarsity() {
+        currentHomeIndex = (currentHomeIndex + 1) % homeVarsities.length;
+        updateHomeVarsity();
+    }
+
+    function prevHomeVarsity() {
+        currentHomeIndex = (currentHomeIndex - 1 + homeVarsities.length) % homeVarsities.length;
+        updateHomeVarsity();
+    }
+</script>
+
+    
     <!-- Subjects Section -->
     <section id="subjects" class="py-12 sm:py-16 bg-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

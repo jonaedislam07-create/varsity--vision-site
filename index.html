@@ -154,7 +154,7 @@
             font-size: 1rem;
         }
 
-        /* 📌 কমন স্লাইডার স্ট্রাকচার (বিশ্ববিদ্যালয় ও কোর্স উভয়ের জন্য) */
+        /* 📌 স্লাইডার স্ট্রাকচার */
         .slider-wrapper {
             position: relative;
             max-width: 650px;
@@ -183,7 +183,6 @@
             border-radius: 10px;
         }
 
-        /* কার্ড স্টাইল */
         .slider-card {
             flex: 0 0 100%;
             scroll-snap-align: center;
@@ -251,7 +250,7 @@
             color: #0f172a;
         }
         
-        /* গ্রিড কার্ডস (বিষযভিত্তিক প্রস্তুতির জন্য) */
+        /* গ্রিড কার্ডস */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -714,15 +713,30 @@
             </div>
         </section>
 
-        <!-- 📌 আমাদের প্রিমিয়াম কোর্সসমূহ (স্লাইডার কার্ড সেকশন) -->
+        <!-- 📌 আমাদের প্রিমিয়াম কোর্সসমূহ (ঢাকা বিশ্ববিদ্যালয় রিটেন সামনে রেখে স্লাইডার কার্ড) -->
         <section id="courses-section" class="section-container bg-grad-2">
             <h2 class="section-title">আমাদের প্রিমিয়াম কোর্সসমূহ</h2>
-            <p class="section-desc">ডানে-বামে স্লাইড করে সাশ্রয়ী ফি-তে আমাদের স্পেশাল ব্যাচগুলো দেখুন</p>
+            <p class="section-desc">ডানে-বামে স্লাইড করে আমাদের স্পেশাল ব্যাচগুলো দেখুন</p>
             
             <div class="slider-wrapper">
                 <div class="slider-container" id="courseSlider">
                     
-                    <!-- কোর্স ১: বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি -->
+                    <!-- ১. ঢাকা বিশ্ববিদ্যালয় রিটেন স্পেশাল (সবার সামনে প্রদর্শিত হবে) -->
+                    <div class="slider-card">
+                        <div>
+                            <div class="card-img-box">
+                                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&auto=format&fit=crop" alt="Written Special" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x200?text=Written+Special';">
+                            </div>
+                            <h3 style="font-size: 1.3rem; color: #fff;">ঢাকা বিশ্ববিদ্যালয় রিটেন স্পেশাল</h3>
+                            <p style="color: #cbd5e1; margin-top: 8px; font-size: 0.92rem; line-height: 1.6;">
+                                <strong>কোর্স হাইলাইটস:</strong> খাতা মূল্যায়ন, ফ্রি হ্যান্ড রাইটিং হ্যাকস, ট্রান্সলেশন এবং রিটেন পরীক্ষার পূর্ণাঙ্গ সাজেশন। ঢাকা বিশ্ববিদ্যালয় ভর্তি পরীক্ষায় লিখিত অংশে শতভাগ নিশ্চিত প্রস্তুতির জন্য আজই জয়েন করুন।
+                            </p>
+                            <h4 style="color: #38bdf8; font-size: 1.3rem; margin-top: 10px;">ফি: ৩০০ ৳</h4>
+                        </div>
+                        <a href="#enrollment-section" class="btn-primary" style="width: 100%; text-align: center;" onclick="selectCourse('written')">কোর্স কিনুন</a>
+                    </div>
+
+                    <!-- ২. বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি -->
                     <div class="slider-card">
                         <div>
                             <div class="card-img-box">
@@ -737,7 +751,7 @@
                         <a href="#enrollment-section" class="btn-primary" style="width: 100%; text-align: center;" onclick="selectCourse('du')">কোর্স কিনুন</a>
                     </div>
 
-                    <!-- কোর্স ২: HSC একাডেমিক কোর্স -->
+                    <!-- ৩. HSC একাডেমিক কোর্স -->
                     <div class="slider-card">
                         <div>
                             <div class="card-img-box">
@@ -750,21 +764,6 @@
                             <h4 style="color: #38bdf8; font-size: 1.3rem; margin-top: 10px;">ফি: ৫০০ ৳</h4>
                         </div>
                         <a href="#enrollment-section" class="btn-primary" style="width: 100%; text-align: center;" onclick="selectCourse('hsc')">কোর্স কিনুন</a>
-                    </div>
-
-                    <!-- কোর্স ৩: ঢাকা বিশ্ববিদ্যালয় রিটেন স্পেশাল -->
-                    <div class="slider-card">
-                        <div>
-                            <div class="card-img-box">
-                                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&auto=format&fit=crop" alt="Written Special" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x200?text=Written+Special';">
-                            </div>
-                            <h3 style="font-size: 1.3rem; color: #fff;">ঢাকা বিশ্ববিদ্যালয় রিটেন স্পেশাল</h3>
-                            <p style="color: #cbd5e1; margin-top: 8px; font-size: 0.92rem; line-height: 1.6;">
-                                <strong>কোর্স হাইলাইটস:</strong> খাতা মূল্যায়ন, ফ্রি হ্যান্ড রাইটিং হ্যাকস, ট্রান্সলেশন এবং রিটেন পরীক্ষার পূর্ণাঙ্গ সাজেশন।
-                            </p>
-                            <h4 style="color: #38bdf8; font-size: 1.3rem; margin-top: 10px;">ফি: ৩০০ ৳</h4>
-                        </div>
-                        <a href="#enrollment-section" class="btn-primary" style="width: 100%; text-align: center;" onclick="selectCourse('written')">কোর্স কিনুন</a>
                     </div>
 
                 </div>
@@ -885,7 +884,7 @@
 
     <!-- জাভাস্ক্রিপ্ট লজিক -->
     <script>
-        // স্লাইডার নেভিগেশন লজিক (যেকোনো স্লাইডারের জন্য কাজ করবে)
+        // স্লাইডার নেভিগেশন লজিক
         function slideContainer(sliderId, direction) {
             const slider = document.getElementById(sliderId);
             const cardWidth = slider.querySelector('.slider-card').offsetWidth + 20;

@@ -411,7 +411,17 @@
             </p>
         </div>
     </footer>
+<script>
+function openEnrollment() {
+    document.getElementById("enrollmentModal").classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+}
 
+function closeEnrollment() {
+    document.getElementById("enrollmentModal").classList.add("hidden");
+    document.body.style.overflow = "";
+}
+</script>
   <script>
 /* ==========================================
    VARSITY VISION - CENTRAL CONFIGURATION

@@ -13,8 +13,20 @@
     <style>
         body { font-family: 'Hind Siliguri', sans-serif; }
     </style>
+
+<script>
+    if (sessionStorage.getItem("vv_payment_access") !== "allowed") {
+        alert("আগে ভর্তি ফরম পূরণ করে কোর্স নির্বাচন করো।");
+        window.location.replace("index.html");
+    } else {
+        sessionStorage.removeItem("vv_payment_access");
+    }
+</script>
+
 </head>
-<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
+
+    
+    <body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
 
     <div class="bg-white rounded-3xl shadow-2xl max-w-xl w-full p-6 sm:p-8 border border-slate-200">
         <!-- Header -->

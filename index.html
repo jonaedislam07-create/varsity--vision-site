@@ -141,28 +141,7 @@
         </div>
     </div>
 
-<!-- এখানে আলাদা ফাইল থেকে প্রিমিয়াম এনরোলমেন্ট সেকশন লোড হবে -->
-<div id="dynamic-enroll-section"></div>
-
-<script>
-    // গিটহাবের Raw লিংকটি এখানে বসিয়ে দিন
-    fetch('https://raw.githubusercontent.com/varsity-vision/varsity--vision-site/refs/heads/main/enroll-section.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('dynamic-enroll-section').innerHTML = html;
-        })
-        .catch(error => console.log('Error loading section:', error));
-
-    // ডাইনামিক কোর্স সিলেকশন ফাংশন (যাতে পেমেন্ট পেজে সঠিক গ্রুপ লিংক পাস হয়)
-    function selectCourseAndEnroll(courseCode, courseName) {
-        localStorage.setItem('selectedCourseCode', courseCode);
-        localStorage.setItem('selectedCourseName', courseName);
-        window.location.href = "payment.html?course=" + courseCode;
-    }
-</script>
-
-    
-    <!-- About Section -->
+            <!-- About Section -->
     <section id="about" class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-2xl shadow-md p-6 sm:p-12 border border-slate-100 flex flex-col md:flex-row items-center gap-8">
             <div class="md:w-1/2">
@@ -197,7 +176,31 @@
         </div>
     </section>
 
-<!-- দেশের সেরা ১০টি পাবলিক বিশ্ববিদ্যালয় পরিচিতি স্লাইডার -->
+<!-- এখানে আলাদা ফাইল থেকে প্রিমিয়াম এনরোলমেন্ট সেকশন লোড হবে -->
+<div id="dynamic-enroll-section"></div>
+
+<script>
+    // গিটহাবের Raw লিংকটি এখানে বসিয়ে দিন
+    fetch('https://raw.githubusercontent.com/varsity-vision/varsity--vision-site/refs/heads/main/enroll-section.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('dynamic-enroll-section').innerHTML = html;
+        })
+        .catch(error => console.log('Error loading section:', error));
+
+    // ডাইনামিক কোর্স সিলেকশন ফাংশন (যাতে পেমেন্ট পেজে সঠিক গ্রুপ লিংক পাস হয়)
+    function selectCourseAndEnroll(courseCode, courseName) {
+        localStorage.setItem('selectedCourseCode', courseCode);
+        localStorage.setItem('selectedCourseName', courseName);
+        window.location.href = "payment.html?course=" + courseCode;
+    }
+</script>
+
+    
+   
+    
+    
+    <!-- দেশের সেরা ১০টি পাবলিক বিশ্ববিদ্যালয় পরিচিতি স্লাইডার -->
 <section id="top-varsities" class="py-12 bg-slate-100">
     <div class="max-w-4xl mx-auto px-4">
         <div class="text-center mb-8">

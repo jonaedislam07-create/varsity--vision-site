@@ -358,34 +358,189 @@
         </div>
     </footer>
 
-    <!-- স্ক্রিপ্ট: কুইজ এবং ডাইনামিক কোর্স ট্র্যাকিং কন্ট্রোলার -->
-    <script>
-        function submitQuiz(e) {
-            e.preventDefault();
-            const form = document.getElementById('quizForm');
-            const resultDiv = document.getElementById('quizResult');
-            const selected = form.q1.value;
+  <script>
+/* ==========================================
+   VARSITY VISION - CENTRAL CONFIGURATION
+   ভবিষ্যতে পরিবর্তন করতে হলে এই অংশ সম্পাদনা করবি
+========================================== */
 
-            resultDiv.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800');
+const SITE_CONFIG = {
+    whatsappGroupLink: "https://chat.whatsapp.com/CyxYq7XMgzMBzQ0mziR0QA?s=cl&p=a&iam=2",
 
-            if (selected === 'b') {
-                resultDiv.classList.add('bg-emerald-100', 'text-emerald-800');
-                resultDiv.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> সঠিক উত্তর! ঢাকা বিশ্ববিদ্যালয় ১৯২১ সালে প্রতিষ্ঠিত হয়।';
-            } else if (!selected) {
-                resultDiv.classList.add('bg-rose-100', 'text-rose-800');
-                resultDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-2"></i> অনুগ্রহ করে একটি উত্তর নির্বাচন করুন।';
-            } else {
-                resultDiv.classList.add('bg-rose-100', 'text-rose-800');
-                resultDiv.innerHTML = '<i class="fa-solid fa-circle-xmark mr-2"></i> ভুল উত্তর! সঠিক উত্তর হলো: ১৯২১ সাল।';
-            }
+    facebookPageLink: "FACEBOOK_LINK_HERE",
+    youtubeChannelLink: "YOUTUBE_LINK_HERE",
+
+    googleFormId: "1FAIpQLSf1z1Tx_df8dm3uUvLcpF3ygPF2Nn8DThYVuBN9q0CKs38L_w",
+
+    formEntries: {
+        name: "entry.1321160515",
+        mobile: "entry.1008865238",
+        college: "entry.299571485",
+        courses: "entry.267683629",
+        totalFee: "entry.860222494",
+        transactionId: "entry.1420821756"
+    },
+
+    notices: [
+        "Varsity Vision-এর নতুন ব্যাচে ভর্তি চলছে।",
+        "নিয়মিত মডেল টেস্ট ও লেকচার শিট পেতে আমাদের সঙ্গে যুক্ত থাকো।",
+        "ভর্তি সংক্রান্ত প্রয়োজনে যোগাযোগ: 01614824987"
+    ]
+};
+
+
+/* ==========================================
+   ENROLLMENT FORM
+========================================== */
+
+const enrollmentForm = document.getElementById("enrollmentForm");
+
+if (enrollmentForm) {
+    enrollmentForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        if (!enrollmentForm.reportValidity()) return;
+
+        const iframe = document.getElementById("googleFormFrame");
+        const status = document.getElementById("formStatus");
+        const whatsappBox = document.getElementById("whatsappAfterSubmit");
+
+        const data = new FormData(enrollmentForm);
+        const selectedCourses = data.getAll("courses");
+
+        if (selectedCourses.length === 0) {
+            alert("অন্তত একটি কোর্স নির্বাচন করো।");
+            return;
         }
 
-        // ডাইনামিক কোর্স সিলেকশন ফাংশন (যাতে ইউজার যে কোর্সে ক্লিক করবে পেমেন্ট পেজে সেই অনুযায়ী হোয়াটসঅ্যাপ গ্রুপ লিংক পাবে)
-        function selectCourseAndEnroll(courseCode, courseName) {
-            localStorage.setItem('selectedCourseCode', courseCode);
-            localStorage.setItem('selectedCourseName', courseName);
-            window.location.href = "payment.html?course=" + courseCode;
-        }
-    </script>
-</body>
-</html>
+        const entries = SITE_CONFIG.formEntries;
+
+        const googleFormData = new URLSearchParams();
+
+        googleFormData.append(entries.name, data.get("studentName"));
+        googleFormData.append(entries.mobile, data.get("mobile"));
+        googleFormData.append(entries.college, data.get("college"));
+
+        selectedCourses.forEach(course => {
+            googleFormData.append(entries.courses, course);
+        });
+
+        googleFormData.append(entries.totalFee, data.get("totalFee"));
+        googleFormData.append(entries.transactionId, data.get("transactionId"));
+
+        const googleFormUrl =
+            "https://docs.google.com/forms/d/e/" +
+            SITE_CONFIG.googleFormId +
+            "/formResponse";
+
+        const googleFormPost = document.createElement("form");
+
+        googleFormPost.method = "POST";
+        googleFormPost.action = googleFormUrl;
+        googleFormPost.target = "googleFormFrame";
+
+        googleFormData.forEach((value, key) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = key;
+            input.value = value;
+            googleFormPost.appendChild(input);
+        });
+
+        document.body.appendChild(googleFormPost);
+
+        status.classList.remove("hidden");
+        status.textContent = "তথ্য জমা দেওয়ার অনুরোধ পাঠানো হচ্ছে...";
+
+        whatsappBox.classList.add("hidden");
+
+        let submitted = false;
+
+        iframe.onload = function() {
+            if (!submitted) return;
+
+            status.textContent =
+                "Google Form-এ সাবমিশন অনুরোধ পাঠানো হয়েছে। " +
+                "তবে জমা নিশ্চিত করতে Google Form-এর Responses যাচাই করো।";
+
+            whatsappBox.classList.remove("hidden");
+        };
+
+        submitted = true;
+        googleFormPost.submit();
+
+        setTimeout(() => googleFormPost.remove(), 3000);
+    });
+}
+
+
+/* ==========================================
+   WHATSAPP GROUP LINK
+========================================== */
+
+const whatsappButton = document.getElementById("whatsappJoin");
+
+if (whatsappButton) {
+    whatsappButton.href = SITE_CONFIG.whatsappGroupLink;
+}
+
+
+/* ==========================================
+   SOCIAL MEDIA LINKS
+========================================== */
+
+const facebookButton = document.getElementById("facebookLink");
+const youtubeButton = document.getElementById("youtubeLink");
+
+if (facebookButton) {
+    facebookButton.href = SITE_CONFIG.facebookPageLink;
+}
+
+if (youtubeButton) {
+    youtubeButton.href = SITE_CONFIG.youtubeChannelLink;
+}
+
+
+/* ==========================================
+   NOTICE TICKER
+========================================== */
+
+const noticeContainer = document.getElementById("noticeContent");
+
+if (noticeContainer) {
+    noticeContainer.textContent = SITE_CONFIG.notices.join("   ◆   ");
+}
+
+
+/* ==========================================
+   DEMO QUIZ
+========================================== */
+
+function submitQuiz(e) {
+    e.preventDefault();
+
+    const form = document.getElementById("quizForm");
+    const resultDiv = document.getElementById("quizResult");
+    const selected = form.q1.value;
+
+    resultDiv.classList.remove(
+        "hidden",
+        "bg-emerald-100",
+        "text-emerald-800",
+        "bg-rose-100",
+        "text-rose-800"
+    );
+
+    if (selected === "b") {
+        resultDiv.classList.add("bg-emerald-100", "text-emerald-800");
+        resultDiv.textContent =
+            "সঠিক উত্তর! ঢাকা বিশ্ববিদ্যালয় ১৯২১ সালে প্রতিষ্ঠিত হয়।";
+    } else if (!selected) {
+        resultDiv.classList.add("bg-rose-100", "text-rose-800");
+        resultDiv.textContent = "অনুগ্রহ করে একটি উত্তর নির্বাচন করো।";
+    } else {
+        resultDiv.classList.add("bg-rose-100", "text-rose-800");
+        resultDiv.textContent = "ভুল উত্তর! সঠিক উত্তর হলো: ১৯২১ সাল।";
+    }
+}
+</script>

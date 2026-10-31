@@ -128,7 +128,7 @@
             color: #ffffff;
         }
 
-        /* 📌 সেকশন ও কার্ড ডিজাইন */
+        /* 📌 সেকশন লেআউট */
         main {
             margin-top: 85px;
         }
@@ -154,7 +154,7 @@
             font-size: 1rem;
         }
 
-        /* 📌 বিশ্ববিদ্যালয় স্লাইডার কন্টেইনার */
+        /* 📌 বিশ্ববিদ্যালয় স্লাইডার */
         .uni-slider-wrapper {
             position: relative;
             max-width: 650px;
@@ -171,7 +171,6 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* স্ক্রলবার কাস্টমাইজেশন */
         .uni-slider-container::-webkit-scrollbar {
             height: 6px;
         }
@@ -249,39 +248,48 @@
             color: #0f172a;
         }
         
+        /* 📌 গ্রিড কার্ডস (বিষযভিত্তিক ও প্রিমিয়াম কোর্সের জন্য) */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 22px;
+            gap: 25px;
         }
 
         .card {
             background: var(--glass-card);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 30px;
+            border-radius: 20px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
         .card:hover { 
-            transform: translateY(-6px); 
+            transform: translateY(-8px); 
             background: var(--glass-card-hover);
             border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 12px 35px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.25);
         }
 
+        /* বিষয়ভিত্তিক স্পেশাল স্টাইল */
+        .subject-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.35) 0%, rgba(15, 23, 42, 0.6) 100%);
+            border-left: 4px solid #06b6d4;
+        }
+
+        /* 📌 প্রিমিয়াম বাটন */
         .btn-primary {
             display: inline-block;
-            padding: 11px 22px;
+            padding: 12px 24px;
             background: var(--btn-gradient);
             color: #fff;
             text-decoration: none;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
             margin-top: 18px;
@@ -292,11 +300,6 @@
         .btn-primary:hover {
             box-shadow: 0 6px 25px rgba(37, 99, 235, 0.6);
             transform: translateY(-2px);
-        }
-
-        .subject-card {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
-            border-left: 4px solid #06b6d4;
         }
 
         .exam-banner {
@@ -364,7 +367,7 @@
             color: #fff;
         }
 
-        /* 📌 আবেদন যোগ্যতার জন্য পপ-আপ মডাল স্টাইল */
+        /* 📌 মডাল পপ-আপ স্টাইল */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -459,7 +462,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* 📱 মোবাইলের জন্য অপটিমাইজড স্লিম রেসপন্সিভ ভিউ */
         @media (max-width: 768px) {
             .sticky-header-container {
                 padding: 6px 3%;
@@ -532,7 +534,7 @@
             <div class="uni-slider-wrapper">
                 <div class="uni-slider-container" id="uniSlider">
                     
-                    <!-- ১. ঢাকা বিশ্ববিদ্যালয় (du.png ছবি সহ) -->
+                    <!-- ১. ঢাকা বিশ্ববিদ্যালয় -->
                     <div class="uni-card">
                         <div>
                             <div class="uni-img-box">
@@ -682,67 +684,67 @@
             </div>
         </section>
 
-        <!-- বিষয়ভিত্তিক প্রস্তুতি -->
+        <!-- 📌 বিষয়ভিত্তিক প্রস্তুতি (সুন্দর গ্লাস কার্ড স্টাইল) -->
         <section class="section-container bg-grad-1">
             <h2 class="section-title">বিষয়ভিত্তিক প্রস্তুতি</h2>
-            <p class="section-desc">বিষয়ভিত্তিক স্পেশাল গাইডলাইন ও অনলাইন ক্লাস</p>
+            <p class="section-desc">বিষয়ভিত্তিক স্পেশাল গাইডলাইন ও অনলাইন স্টাডি মেটেরিয়াল</p>
             <div class="grid-cards">
                 <div class="card subject-card">
                     <div>
-                        <h3 style="color: #06b6d4;">বাংলা (Bangla)</h3>
-                        <p style="color: #cbd5e1; margin-top: 8px; font-size: 0.95rem;">ব্যাকরণ, সাহিত্যপাঠ এবং গুরুত্বপূর্ণ প্রশ্ন ব্যাংক সমাধান।</p>
+                        <h3 style="color: #06b6d4; font-size: 1.3rem;">বাংলা (Bangla)</h3>
+                        <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.95rem; line-height: 1.6;">ব্যাকরণ, সাহিত্যপাঠ এবং গুরুত্বপূর্ণ বিগত বছরের প্রশ্ন ব্যাংক সমাধান।</p>
                     </div>
                     <a href="bangla.html" target="_blank" class="btn-primary">প্রস্তুতি শুরু করুন</a>
                 </div>
                 <div class="card subject-card">
                     <div>
-                        <h3 style="color: #06b6d4;">ইংরেজি (English)</h3>
-                        <p style="color: #cbd5e1; margin-top: 8px; font-size: 0.95rem;">Grammar rules, Vocabulary, & Comprehension guide.</p>
+                        <h3 style="color: #06b6d4; font-size: 1.3rem;">ইংরেজি (English)</h3>
+                        <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.95rem; line-height: 1.6;">Grammar rules, Vocabulary, & Comprehension complete guide.</p>
                     </div>
                     <a href="english.html" target="_blank" class="btn-primary">প্রস্তুতি শুরু করুন</a>
                 </div>
                 <div class="card subject-card">
                     <div>
-                        <h3 style="color: #06b6d4;">সাধারণ জ্ঞান (GK)</h3>
-                        <p style="color: #cbd5e1; margin-top: 8px; font-size: 0.95rem;">বাংলাদেশ ও আন্তর্জাতিক বিষয়াবলি এবং সাম্প্রতিক তথ্য।</p>
+                        <h3 style="color: #06b6d4; font-size: 1.3rem;">সাধারণ জ্ঞান (GK)</h3>
+                        <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.95rem; line-height: 1.6;">বাংলাদেশ ও আন্তর্জাতিক বিষয়াবলি এবং সাম্প্রতিক সাধারণ জ্ঞান তথ্য।</p>
                     </div>
                     <a href="gk.html" target="_blank" class="btn-primary">প্রস্তুতি শুরু করুন</a>
                 </div>
             </div>
         </section>
 
-        <!-- প্রিমিয়াম কোর্স সেকশন -->
+        <!-- 📌 আমাদের প্রিমিয়াম কোর্সসমূহ (উন্নত প্রিমিয়াম গ্লাস কার্ড স্টাইল) -->
         <section id="courses-section" class="section-container bg-grad-2">
             <h2 class="section-title">আমাদের প্রিমিয়াম কোর্সসমূহ</h2>
             <p class="section-desc">সাশ্রয়ী ফি-তে স্পেশাল ব্যাচে ভর্তি চলছে</p>
             <div class="grid-cards">
                 <div class="card">
                     <div>
-                        <h3 style="font-size: 1.25rem; color: #fff;">বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি</h3>
-                        <p style="color: #cbd5e1; margin-top: 8px; font-size: 0.95rem;">ফুল মডেল টেস্ট, লাইভ ক্লাস ও সলভ ক্লাস।</p>
+                        <h3 style="font-size: 1.3rem; color: #fff;">বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি</h3>
+                        <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.95rem; line-height: 1.6;">ফুল মডেল টেস্ট, ডাউট সলভিং লাইভ ক্লাস ও স্পেশাল লেকচার শিট।</p>
                     </div>
                     <div>
-                        <h4 style="color: #38bdf8; font-size: 1.4rem; margin: 12px 0;">ফি: ১০০০ ৳</h4>
+                        <h4 style="color: #38bdf8; font-size: 1.5rem; margin: 15px 0;">ফি: ১০০০ ৳</h4>
                         <a href="#enrollment-section" class="btn-primary" style="width: 100%;" onclick="selectCourse('du')">কোর্স কিনুন</a>
                     </div>
                 </div>
                 <div class="card">
                     <div>
-                        <h3 style="font-size: 1.25rem; color: #fff;">HSC একাডেমিক কোর্স</h3>
-                        <p style="color: #cbd5e1; margin-top: 8px; font-size: 0.95rem;">বোর্ড পরীক্ষার শতভাগ প্রস্তুতির নিশ্চয়তা।</p>
+                        <h3 style="font-size: 1.3rem; color: #fff;">HSC একাডেমিক কোর্স</h3>
+                        <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.95rem; line-height: 1.6;">বোর্ড পরীক্ষার শতভাগ প্রস্তুতি ও এ প্লাস নিশ্চিতকরণের গাইডলাইন।</p>
                     </div>
                     <div>
-                        <h4 style="color: #38bdf8; font-size: 1.4rem; margin: 12px 0;">ফি: ৫০০ ৳</h4>
+                        <h4 style="color: #38bdf8; font-size: 1.5rem; margin: 15px 0;">ফি: ৫০০ ৳</h4>
                         <a href="#enrollment-section" class="btn-primary" style="width: 100%;" onclick="selectCourse('hsc')">কোর্স কিনুন</a>
                     </div>
                 </div>
                 <div class="card">
                     <div>
-                        <h3 style="font-size: 1.25rem; color: #fff;">ঢাকা বিশ্ববিদ্যালয় রিটেন স্পেশাল</h3>
-                        <p style="color: #cbd5e1; margin-top: 8px; font-size: 0.95rem;">খাতা মূল্যায়নসহ লিখিত পরীক্ষার বিশেষ হ্যাকস।</p>
+                        <h3 style="font-size: 1.3rem; color: #fff;">ঢাকা বিশ্ববিদ্যালয় রিটেন স্পেশাল</h3>
+                        <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.95rem; line-height: 1.6;">খাতা মূল্যায়ন, বিশেষ ফ্রি হ্যান্ড রাইটিং হ্যাকস ও মডেল টেস্ট।</p>
                     </div>
                     <div>
-                        <h4 style="color: #38bdf8; font-size: 1.4rem; margin: 12px 0;">ফি: ৩০০ ৳</h4>
+                        <h4 style="color: #38bdf8; font-size: 1.5rem; margin: 15px 0;">ফি: ৩০০ ৳</h4>
                         <a href="#enrollment-section" class="btn-primary" style="width: 100%;" onclick="selectCourse('written')">কোর্স কিনুন</a>
                     </div>
                 </div>

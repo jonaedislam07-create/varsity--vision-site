@@ -349,6 +349,165 @@
         </div>
     </section>
 
+    
+<!-- ENROLLMENT MODAL -->
+<div id="enrollmentModal" class="modal-overlay hidden">
+    <div class="modal-content">
+
+        <div class="flex justify-between items-center mb-5">
+            <h2 class="text-2xl font-bold text-emerald-800">
+                ভর্তি ফরম
+            </h2>
+            <button type="button" onclick="closeEnrollment()"
+                class="text-2xl text-slate-500">&times;</button>
+        </div>
+
+        <p class="text-sm text-slate-600 mb-5">
+            প্রয়োজনীয় তথ্য দিয়ে কোর্সে ভর্তি হও।
+        </p>
+
+        <form id="enrollmentForm" class="space-y-4">
+
+            <div>
+                <label class="block font-semibold mb-1">শিক্ষার্থীর নাম</label>
+                <input type="text" name="studentName" required
+                    class="w-full border rounded-lg p-3"
+                    placeholder="তোমার পূর্ণ নাম">
+            </div>
+
+            <div>
+                <label class="block font-semibold mb-1">মোবাইল নাম্বার</label>
+                <input type="tel" name="mobile" required
+                    pattern="01[0-9]{9}"
+                    class="w-full border rounded-lg p-3"
+                    placeholder="01XXXXXXXXX">
+            </div>
+
+            <div>
+                <label class="block font-semibold mb-1">কলেজের নাম</label>
+                <input type="text" name="college" required
+                    class="w-full border rounded-lg p-3"
+                    placeholder="তোমার কলেজের নাম">
+            </div>
+
+            <div>
+                <label class="block font-semibold mb-2">
+                    কোর্স নির্বাচন করো
+                </label>
+
+                <div class="space-y-3 border rounded-lg p-3">
+
+                    <label class="flex items-center justify-between gap-2">
+                        <span class="flex items-center gap-2">
+                            <input type="checkbox" name="courses"
+                                value="বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি"
+                                data-fee="1000"
+                                onchange="calculateTotalFee()">
+                            বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি
+                        </span>
+                        <span class="font-semibold">৳১,০০০</span>
+                    </label>
+
+                    <label class="flex items-center justify-between gap-2">
+                        <span class="flex items-center gap-2">
+                            <input type="checkbox" name="courses"
+                                value="HSC Academic"
+                                data-fee="500"
+                                onchange="calculateTotalFee()">
+                            HSC Academic
+                        </span>
+                        <span class="font-semibold">৳৫০০</span>
+                    </label>
+
+                    <label class="flex items-center justify-between gap-2">
+                        <span class="flex items-center gap-2">
+                            <input type="checkbox" name="courses"
+                                value="DU Written"
+                                data-fee="300"
+                                onchange="calculateTotalFee()">
+                            DU Written
+                        </span>
+                        <span class="font-semibold">৳৩০০</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+                <label class="block font-bold text-emerald-800 mb-2">
+                    মোট কোর্স ফি
+                </label>
+
+                <div class="text-3xl font-bold text-emerald-700">
+                    ৳<span id="totalFeeDisplay">0</span>
+                </div>
+
+                <input type="hidden" name="totalFee" id="totalFee"
+                    value="0">
+
+                <p class="text-xs text-slate-600 mt-2">
+                    নির্বাচিত কোর্স অনুযায়ী ফি স্বয়ংক্রিয়ভাবে হিসাব হবে।
+                </p>
+            </div>
+
+            <button type="button" onclick="goToPayment()"
+                class="w-full bg-amber-500 hover:bg-amber-600
+                text-slate-900 font-bold py-3 rounded-lg">
+                পেমেন্ট পেজে যাও
+            </button>
+
+            <div class="border-t pt-4">
+                <label class="block font-semibold mb-1">
+                    বিকাশ ট্রানজ্যাকশন আইডি
+                </label>
+
+                <input type="text" name="transactionId" required
+                    class="w-full border rounded-lg p-3"
+                    placeholder="Transaction ID লিখো">
+            </div>
+
+            <button type="submit"
+                class="w-full bg-emerald-600 hover:bg-emerald-700
+                text-white font-bold py-3 rounded-lg">
+                ভর্তি তথ্য জমা দিন
+            </button>
+
+        </form>
+
+        <div id="formStatus"
+            class="hidden mt-4 p-3 bg-blue-50 text-blue-800 rounded-lg text-sm">
+        </div>
+
+        <div id="whatsappAfterSubmit"
+            class="hidden mt-4 p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
+
+            <p class="font-bold text-emerald-800 mb-2">
+                পরবর্তী ধাপ
+            </p>
+
+            <p class="text-sm text-slate-700 mb-3">
+                ভর্তি তথ্য পাঠানোর অনুরোধ করা হয়েছে। কর্তৃপক্ষের
+                মাধ্যমে তথ্য যাচাইয়ের পর WhatsApp গ্রুপে যুক্ত হও।
+            </p>
+
+            <a id="whatsappJoin" href="#" target="_blank"
+                rel="noopener noreferrer"
+                class="block text-center bg-green-600 text-white
+                font-bold py-3 rounded-lg">
+                WhatsApp গ্রুপে যুক্ত হও
+            </a>
+        </div>
+
+        <iframe id="googleFormFrame"
+            name="googleFormFrame"
+            class="hidden"
+            title="Google Form submission">
+        </iframe>
+
+    </div>
+</div>
+
+
     <!-- Sample Model Test Section -->
     <section id="exam" class="py-12 sm:py-16 bg-white border-t border-slate-200">
         <div class="max-w-4xl mx-auto px-4">

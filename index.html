@@ -570,7 +570,9 @@
             </p>
         </div>
     </footer>
-<script>
+
+    
+    <script>
 function openEnrollment() {
     document.getElementById("enrollmentModal").classList.remove("hidden");
     document.body.style.overflow = "hidden";
@@ -580,7 +582,53 @@ function closeEnrollment() {
     document.getElementById("enrollmentModal").classList.add("hidden");
     document.body.style.overflow = "";
 }
-</script>
+
+
+// COURSE FEE CALCULATION
+function calculateTotalFee() {
+    const selectedCourses = document.querySelectorAll(
+        '#enrollmentForm input[name="courses"]:checked'
+    );
+
+    let total = 0;
+
+    selectedCourses.forEach(course => {
+        total += Number(course.dataset.fee);
+    });
+
+    document.getElementById('totalFeeDisplay').textContent =
+        total.toLocaleString('en-IN');
+
+    document.getElementById('totalFee').value = total;
+}
+
+
+// GO TO PAYMENT PAGE
+function goToPayment() {
+    const selectedCourses = document.querySelectorAll(
+        '#enrollmentForm input[name="courses"]:checked'
+    );
+
+    if (selectedCourses.length === 0) {
+        alert('প্রথমে অন্তত একটি কোর্স নির্বাচন করো।');
+        return;
+    }
+
+    const courses = Array.from(selectedCourses)
+        .map(course => course.value);
+
+    const total = document.getElementById('totalFee').value;
+
+    const paymentURL = new URL('payment.html', window.location.href);
+
+    paymentURL.searchParams.set('courses', courses.join(', '));
+    paymentURL.searchParams.set('total', total);
+
+    window.location.href = paymentURL.toString();
+}
+
+        
+    </script>
   <script>
 /* ==========================================
    VARSITY VISION - CENTRAL CONFIGURATION

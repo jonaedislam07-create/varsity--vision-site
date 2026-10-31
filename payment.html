@@ -56,6 +56,29 @@
             </div>
         </div>
 
+        
+<div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
+    <h2 class="text-xl font-bold mb-3">তোমার নির্বাচিত কোর্স</h2>
+
+    <p id="paymentCourses" class="mb-3"></p>
+
+    <p class="font-bold text-emerald-700 text-2xl">
+        মোট ফি: ৳<span id="paymentTotal">0</span>
+    </p>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+document.getElementById('paymentCourses').textContent =
+    params.get('courses') || 'কোনো কোর্স নির্বাচন করা হয়নি';
+
+document.getElementById('paymentTotal').textContent =
+    Number(params.get('total') || 0).toLocaleString('en-IN');
+</script>
+
+        
+        
         <!-- Step-by-Step Payment Instructions & Copy Box -->
         <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-6 space-y-3">
             <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1"><i class="fa-solid fa-list-check mr-1 text-emerald-600"></i> পেমেন্ট নির্দেশাবলী</h4>

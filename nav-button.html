@@ -1,0 +1,22 @@
+<button type="button" onclick="selectCourseAndEnroll('varsity', 'বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি')" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-bold text-slate-900 rounded-full group bgনেভবারের ডিজাইনটি একদম আলাদা ফাইলে রেখে লোড করার জন্য খুব সহজ একটি টেকনিক আছে। 
+
+আমরা নেভবারের বাটনের ডিজাইনটি আমাদের তৈরি করা ওই **`enroll-section.html`** ফাইলের ভেতরেই একপাশে রেখে দেব এবং জাভাস্ক্রিপ্ট দিয়ে তা টেনে এনে নেভবারে বসিয়ে দেব।
+
+সহজে কীভাবে করবেন তা ধাপে ধাপে বুঝিয়ে দিচ্ছি:
+
+---
+
+### ধাপ ১: `enroll-section.html` ফাইলের শুরুতে বাটনটি যোগ করুন
+
+আপনার গিটহাবের `enroll-section.html` ফাইলটির **একদম উপরে** নেভবার বাটনের ডিজাইনটুকু যুক্ত করে দিন:
+
+```html
+<!-- ১. নেভবার বাটনের ডিজাইন (এটি আলাদা আইডি দিয়ে চিহ্নিত) -->
+<template id="nav-btn-template">
+    <button type="button" onclick="selectCourseAndEnroll('varsity', 'বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি')" class="bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-slate-900 font-extrabold px-5 py-2.5 rounded-full text-sm sm:text-base shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 transition-all transform hover:-translate-y-0.5 inline-flex items-center gap-2 cursor-pointer border border-amber-300">
+        <i class="fa-solid fa-bolt text-slate-900"></i>
+        <span>এনরোল করুন</span>
+    </button>
+</template>
+
+<!-- ২. বাকি কার্ডগুলোর কোড আগের মতোই নিচে থাকবে... -->

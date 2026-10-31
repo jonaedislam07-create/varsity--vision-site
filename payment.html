@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পেমেন্ট সম্পন্ন করুন</title>
+    
+    <!-- Noto Serif Bengali Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Serif Bengali', serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .payment-card {
+            width: 100%;
+            max-width: 480px;
+            background: #fff;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        h2 {
+            color: #e11d48;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        p {
+            color: #475569;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .bkash-number {
+            background: #fdf2f4;
+            color: #e11d48;
+            padding: 8px 15px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 10px 0 20px 0;
+            border: 1px dashed #e11d48;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: #16a34a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background: #15803d;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-card">
+        <h2>বিকাশ পেমেন্ট গেটওয়ে</h2>
+        <p>আমাদের মার্চেন্ট নম্বরে কোর্স ফি সেন্ড মানি করুন:</p>
+        <div class="bkash-number">01700-000000</div>
+        
+        <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 20px;">
+            টাকা পাঠানো সফল হলে আপনার বিকাশ থেকে পাওয়া ট্রানজেকশন আইডি (TrxID) নিচে লিখে সাবমিট করুন।
+        </p>
+        
+        <form onsubmit="handlePayment(event)">
+            <div class="form-group">
+                <label>বিকাশ ট্রানজেকশন আইডি (TrxID) *</label>
+                <input type="text" id="trx-id" placeholder="যেমন: 9J7A6K5L..." required>
+            </div>
+            <button type="submit" class="btn-submit">পেমেন্ট নিশ্চিত করুন</button>
+        </form>
+
+        <a href="index.html" class="back-link">&larr; হোম পেজে ফিরে যান</a>
+    </div>
+
+    <script>
+        function handlePayment(e) {
+            e.preventDefault();
+            const trxId = document.getElementById('trx-id').value;
+            if(trxId.trim() !== "") {
+                alert("ধন্যবাদ! আপনার পেমেন্ট তথ্য সফলভাবে জমা হয়েছে। খুব শীঘ্রই আমরা আপনার এনরোলমেন্ট কনফার্ম করব।");
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

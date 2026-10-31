@@ -179,15 +179,26 @@
 <div id="dynamic-enroll-section"></div>
 
 <script>
-    // গিটহাবের Raw লিংকটি এখানে বসিয়ে দিন
-    fetch('https://raw.githubusercontent.com/varsity-vision/varsity--vision-site/refs/heads/main/enroll-section.html')
+    // গিটহাবের Raw লিংক থেকে ডিজাইন ফাইলটি লোড করা
+    fetch('আপনার_গিটহাব_ফাইল_এর_RAW_লিংক_এখানে_দিন')
         .then(response => response.text())
         .then(html => {
-            document.getElementById('dynamic-enroll-section').innerHTML = html;
-        })
-        .catch(error => console.log('Error loading section:', error));
+            // ১. একটি টেম্পোরারি এলিমেন্টে এইচটিএমএল লোড করা
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
 
-    // ডাইনামিক কোর্স সিলেকশন ফাংশন (যাতে পেমেন্ট পেজে সঠিক গ্রুপ লিংক পাস হয়)
+            // ২. নেভবার বাটনটি টেনে এনে নেভবারের খালি জায়গায় বসানো
+            const navBtnTemplate = tempDiv.querySelector('#nav-btn-template');
+            if (navBtnTemplate) {
+                document.getElementById('navbar-enroll-btn-container').appendChild(navBtnTemplate.content.cloneNode(true));
+            }
+
+            // ৩. মূল সেকশন ও কার্ডগুলো বডির নির্দিষ্ট জায়গায় বসানো
+            document.getElementById('dynamic-enroll-section').innerHTML = tempDiv.innerHTML;
+        })
+        .catch(error => console.log('Error loading external file:', error));
+
+    // ডাইনামিক কোর্স সিলেকশন ফাংশন
     function selectCourseAndEnroll(courseCode, courseName) {
         localStorage.setItem('selectedCourseCode', courseCode);
         localStorage.setItem('selectedCourseName', courseName);

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>দেশ সেরা ১০টি বিশ্ববিদ্যালয় - Varsity Vision</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Hind Siliguri for Bengali) -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Header Navigation -->
+    <nav class="bg-emerald-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="bg-emerald-600 p-2 rounded-lg text-xl font-bold"><i class="fa-solid fa-graduation-cap"></i></span>
+                    <span class="font-bold text-2xl tracking-wide">Varsity Vision</span>
+                </a>
+                <a href="index.html" class="bg-emerald-700 hover:bg-emerald-600 px-4 py-2 rounded-lg text-sm font-bold border border-emerald-500 transition flex items-center gap-2">
+                    <i class="fa-solid fa-house"></i> হোমপেজে ফিরুন
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="bg-slate-900 text-white py-12 px-4 text-center">
+        <h1 class="text-3xl sm:text-4xl font-extrabold mb-2">দেশ সেরা ১০টি পাবলিক বিশ্ববিদ্যালয়</h1>
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">বিশ্ববিদ্যালয়গুলোর ইতিহাস, বিশেষত্ব এবং আবেদন যোগ্যতা জেনে এখনই তোমার কাঙ্ক্ষিত লক্ষ্য স্থির করো।</p>
+    </div>
+
+    <!-- Varsity Cards Grid -->
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="varsitiesContainer">
+            <!-- JavaScript dynamically inserts 10 varsity cards here -->
+        </div>
+    </div>
+
+    <!-- Eligibility Modal Popup -->
+    <div id="eligibilityModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-100 transform transition-all">
+            <div class="bg-emerald-800 text-white p-5 flex justify-between items-center">
+                <h3 id="modalTitle" class="text-xl font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-check"></i> আবেদন যোগ্যতা
+                </h3>
+                <button onclick="closeModal()" class="text-emerald-200 hover:text-white text-xl font-bold cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-sm text-slate-700 leading-relaxed" id="modalContent">
+                    <!-- Dynamic details inserted here -->
+                </div>
+                <button onclick="closeModal()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition cursor-pointer">
+                    বন্ধ করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center">
+        <p class="text-sm">&copy; 2026 Varsity Vision. All rights reserved.</p>
+    </footer>
+
+    <!-- Script to Render Varsities and Modal -->
+    <script>
+        const fullVarsities = [
+            {
+                id: "du",
+                name: "ঢাকা বিশ্ববিদ্যালয় (DU)",
+                est: "১৯২১ | 'প্রাচ্যের অক্সফোর্ড'",
+                history: "ঢাকা বিশ্ববিদ্যালয় বাংলাদেশের প্রাচীনতম পাবলিক বিশ্ববিদ্যালয়। ১৯২১ সালে প্রতিষ্ঠার পর থেকে দেশের প্রতিটি ঐতিহাসিক আন্দোলন ও শিক্ষা-সংস্কৃতিতে এর ভূমিকা অনন্য।",
+                eligibility: "<strong>বিজ্ঞান ইউনিট:</strong> SSC ও HSC মিলে ন্যূনতম জিপিএ ৮.০০ (পৃথকভাবে ৩.৫০ থাকতে হবে)।<br><strong>মানবিক ইউনিট:</strong> মোট জিপিএ ৭.৫০।<br><strong>ব্যবসায় শিক্ষা:</strong> মোট জিপিএ ৭.৫০।",
+                img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "buet",
+                name: "বুয়েট (BUET)",
+                est: "১৯৬২ | প্রকৌশল শিক্ষার শীর্ষ স্থান",
+                history: "বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয় (BUET) দেশের প্রযুক্তি ও প্রকৌশল শিক্ষার সর্বোচ্চ স্থান। উদ্ভাবন এবং বিশ্বমানের প্রকৌশলী গড়ার পেছনে বুয়েটের অবদান অনস্বীকার্য।",
+                eligibility: "HSC-তে গণিত, পদার্থ, রসায়নে জিপিএ-৫.০০ সহ মোট জিপিএ ৫.০০ থাকতে হবে এবং প্রাক-নির্বাচনী পরীক্ষায় উত্তীর্ণ হতে হবে।",
+                img: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "ru",
+                name: "রাজশাহী বিশ্ববিদ্যালয় (RU)",
+                est: "১৯৫৩ | মতিহারের সবুজ প্রাঙ্গণ",
+                history: "রাজশাহী বিশ্ববিদ্যালয় দেশের দ্বিতীয় বৃহত্তম বিশ্ববিদ্যালয়। বিস্তৃত সবুজ ক্যাম্পাস ও সুদীর্ঘ ঐতিহ্য নিয়ে এটি উত্তরবঙ্গের প্রধান শিক্ষা নিকেতন।",
+                eligibility: "<strong>বিজ্ঞান:</strong> মোট জিপিএ ৮.০০ (পৃথকভাবে ৩.৫০)।<br><strong>মানবিক:</strong> মোট জিপিএ ৭.০০।<br><strong>বাণিজ্য:</strong> মোট জিপিএ ৭.৫০।",
+                img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "cu",
+                name: "চট্টগ্রাম বিশ্ববিদ্যালয় (CU)",
+                est: "১৯৬৬ | শাটল ট্রেনের ঐতিহ্য",
+                history: "প্রাকৃতিক সৌন্দর্যের আধার চট্টগ্রাম বিশ্ববিদ্যালয় তার শাটল ট্রেন ও পাহাড়ি ক্যাম্পাসের জন্য বিশ্বজুড়ে পরিচিত এবং মানসম্মত গবেষণার কেন্দ্রবিন্দু।",
+                eligibility: "বিজ্ঞান ও বাণিজ্যিক শাখায় মোট জিপিএ ৮.০০ এবং মানবিক শাখায় মোট জিপিএ ৭.৫০ প্রয়োজন।",
+                img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "ju",
+                name: "জাহাঙ্গীরনগর বিশ্ববিদ্যালয় (JU)",
+                est: "১৯৭০ | সম্পূর্ণ আবাসিক বিশ্ববিদ্যালয়",
+                history: "সাংস্কৃতিক চর্চা, মুক্তমঞ্চ ও অতিথি পাখির জন্য জাহাঙ্গীরনগর বিশ্ববিদ্যালয় অত্যন্ত জনপ্রিয়। এটি দেশের একমাত্র পূর্ণাঙ্গ আবাসিক ক্যাম্পাস।",
+                eligibility: "বিজ্ঞান ইউনিটে মোট জিপিএ ৯.০০ পর্যন্ত চাওয়া হয়, অন্যান্য ইউনিটে মোট জিপিএ ৮.০০-৮.৫০ প্রয়োজন।",
+                img: "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "sust",
+                name: "শাহজালাল বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয় (SUST)",
+                est: "১৯৯১ | প্রথম প্রগতিশীল বিজ্ঞান বিশ্ববিদ্যালয়",
+                history: "শাবিপ্রবি তথ্যপ্রযুক্তি, ডিজিটাল সেবা ও বিজ্ঞান গবেষণায় বাংলাদেশের অন্যতম পথিকৃৎ বিশ্ববিদ্যালয়।",
+                eligibility: "বিজ্ঞান শাখায় মোট জিপিএ ৮.০০ এবং অন্যান্য শাখায় মোট জিপিএ ৭.৫০ প্রয়োজন।",
+                img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "bau",
+                name: "বাংলাদেশ কৃষি বিশ্ববিদ্যালয় (BAU)",
+                est: "১৯৬১ | কৃষি শিক্ষার শীর্ষ বিদ্যাপীঠ",
+                history: "ময়মনসিংহে অবস্থিত এই বিশ্ববিদ্যালয়টি দেশের খাদ্য নিরাপত্তা ও কৃষি গবেষণায় বৈপ্লবিক ভূমিকা রাখছে।",
+                eligibility: "শুধুমাত্র বিজ্ঞান শাখার জন্য। SSC ও HSC মিলে মোট জিপিএ ৮.৫০ (জীববিজ্ঞান ও গণিত আবশ্যক)।",
+                img: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "ku",
+                name: "খুলনা বিশ্ববিদ্যালয় (KU)",
+                est: "১৯৯১ | রাজনীতি ও সেশনজট মুক্ত",
+                history: "রাজনীতিমুক্ত পরিচ্ছন্ন পরিবেশ এবং কঠোর সময়সূচীর জন্য খুলনা বিশ্ববিদ্যালয় প্রশংসিত।",
+                eligibility: "বিজ্ঞান ও ব্যবসায় শিক্ষায় মোট জিপিএ ৭.৫০ এবং মানবিকে মোট জিপিএ ৭.০০ প্রয়োজন।",
+                img: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "jnu",
+                name: "জগন্নাথ বিশ্ববিদ্যালয় (JnU)",
+                est: "২০০৫ | পুরান ঢাকার ঐতিহ্যে ঘেরা",
+                history: "পুরান ঢাকার প্রাণকেন্দ্রে অবস্থিত এই ঐতিহ্যবাহী প্রতিষ্ঠানটি মানসম্মত শিক্ষা ও দক্ষ মানবসম্পদ তৈরিতে অবদান রাখছে।",
+                eligibility: "গুচ্ছ (GST) পরীক্ষা পদ্ধতির অধীনে ভর্তি নেওয়া হয়। SSC ও HSC মিলে জিপিএ ৭.৫০-৮.০০ আবশ্যক।",
+                img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "iu",
+                name: "ইসলামী বিশ্ববিদ্যালয় (IU)",
+                est: "১৯৭৯ | কুষ্টিয়া-ঝিনাইদহ প্রাঙ্গণ",
+                history: "আধুনিক উচ্চশিক্ষার সাথে ইসলামিক সংস্কৃতির সমন্বয়ে গঠিত ইসলামী বিশ্ববিদ্যালয় একটি অনন্য বিদ্যাপীঠ।",
+                eligibility: "গুচ্ছভুক্ত পদ্ধতি। SSC ও HSC উভয় পরীক্ষায় পৃথকভাবে জিপিএ ৩.০০ সহ মোট জিপিএ ৬.৫০-৭.০০।",
+                img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        function renderVarsities() {
+            const container = document.getElementById('varsitiesContainer');
+            container.innerHTML = fullVarsities.map(v => `
+                <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-2xl transition">
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="${v.img}" alt="${v.name}" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">পাবলিক</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-slate-900 mb-1">${v.name}</h3>
+                            <p class="text-xs font-semibold text-emerald-600 mb-3">${v.est}</p>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">${v.history}</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 space-y-2">
+                        <button onclick="openEligibilityModal('${v.name}', '${encodeURIComponent(v.eligibility)}')" class="w-full bg-slate-100 hover:bg-slate-200 text-emerald-800 font-bold py-2.5 rounded-xl border border-emerald-200 transition text-sm cursor-pointer">
+                            📋 আবেদন যোগ্যতা দেখুন
+                        </button>
+                        <a href="index.html#enroll" class="block text-center w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-sm">
+                            🎯 প্রস্তুতি শুরু করুন
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openEligibilityModal(name, encodedEligibility) {
+            document.getElementById('modalTitle').innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${name}`;
+            document.getElementById('modalContent').innerHTML = decodeURIComponent(encodedEligibility);
+            document.getElementById('eligibilityModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('eligibilityModal').classList.add('hidden');
+        }
+
+        renderVarsities();
+    </script>
+</body>
+</html>

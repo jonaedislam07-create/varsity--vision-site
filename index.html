@@ -654,6 +654,75 @@ const SITE_CONFIG = {
    ENROLLMENT FORM
 ========================================== */
 
+
+/* ==========================================
+   COURSE FEE CALCULATION
+========================================== */
+
+function calculateTotalFee() {
+    const selectedCourses = document.querySelectorAll(
+        '#enrollmentForm input[name="courses"]:checked'
+    );
+
+    let total = 0;
+
+    selectedCourses.forEach(course => {
+        total += Number(course.dataset.fee);
+    });
+
+    document.getElementById("totalFeeDisplay").textContent =
+        total.toLocaleString("en-IN");
+
+    document.getElementById("totalFee").value = total;
+}
+
+
+/* ==========================================
+   VALIDATE FORM AND GO TO PAYMENT
+========================================== */
+
+function goToPayment() {
+    const form = document.getElementById("enrollmentForm");
+
+    // শিক্ষার্থীর তথ্য যাচাই
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    // অন্তত একটি কোর্স নির্বাচন যাচাই
+    const selectedCourses = document.querySelectorAll(
+        '#enrollmentForm input[name="courses"]:checked'
+    );
+
+    if (selectedCourses.length === 0) {
+        alert("অন্তত একটি কোর্স নির্বাচন করো।");
+        return;
+    }
+
+    calculateTotalFee();
+
+    const courses = Array.from(selectedCourses)
+        .map(course => course.value);
+
+    const total = document.getElementById("totalFee").value;
+
+    // পেমেন্ট পেজে প্রবেশের অনুমতি
+    sessionStorage.setItem("vv_payment_access", "allowed");
+
+    const paymentURL = new URL("payment.html", window.location.href);
+
+    paymentURL.searchParams.set("courses", courses.join(", "));
+    paymentURL.searchParams.set("total", total);
+
+    window.location.href = paymentURL.toString();
+}
+
+
+/* ==========================================
+   ENROLLMENT FORM SUBMISSION
+========================================== */
+
 const enrollmentForm = document.getElementById("enrollmentForm");
 
 if (enrollmentForm) {
@@ -675,7 +744,6 @@ if (enrollmentForm) {
         }
 
         const entries = SITE_CONFIG.formEntries;
-
         const googleFormData = new URLSearchParams();
 
         googleFormData.append(entries.name, data.get("studentName"));
@@ -687,7 +755,9 @@ if (enrollmentForm) {
         });
 
         googleFormData.append(entries.totalFee, data.get("totalFee"));
-        googleFormData.append(entries.transactionId, data.get("transactionId"));
+
+        // Transaction ID payment page থেকে আলাদাভাবে সংগ্রহ করতে হবে।
+        // তাই এখানে transactionId পাঠানো হচ্ছে না।
 
         const googleFormUrl =
             "https://docs.google.com/forms/d/e/" +
@@ -722,7 +792,7 @@ if (enrollmentForm) {
 
             status.textContent =
                 "Google Form-এ সাবমিশন অনুরোধ পাঠানো হয়েছে। " +
-                "তবে জমা নিশ্চিত করতে Google Form-এর Responses যাচাই করো।";
+                "তবে তথ্য জমা নিশ্চিত করতে Google Form-এর Responses যাচাই করো।";
 
             whatsappBox.classList.remove("hidden");
         };
@@ -804,4 +874,3 @@ function submitQuiz(e) {
         resultDiv.textContent = "ভুল উত্তর! সঠিক উত্তর হলো: ১৯২১ সাল।";
     }
 }
-</script>

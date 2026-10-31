@@ -141,6 +141,27 @@
         </div>
     </div>
 
+<!-- এখানে আলাদা ফাইল থেকে প্রিমিয়াম এনরোলমেন্ট সেকশন লোড হবে -->
+<div id="dynamic-enroll-section"></div>
+
+<script>
+    // গিটহাবের Raw লিংকটি এখানে বসিয়ে দিন
+    fetch('আপনার_গিটহাব_ফাইল_এর_RAW_লিংক_এখানে_দিন')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('dynamic-enroll-section').innerHTML = html;
+        })
+        .catch(error => console.log('Error loading section:', error));
+
+    // ডাইনামিক কোর্স সিলেকশন ফাংশন (যাতে পেমেন্ট পেজে সঠিক গ্রুপ লিংক পাস হয়)
+    function selectCourseAndEnroll(courseCode, courseName) {
+        localStorage.setItem('selectedCourseCode', courseCode);
+        localStorage.setItem('selectedCourseName', courseName);
+        window.location.href = "payment.html?course=" + courseCode;
+    }
+</script>
+
+    
     <!-- About Section -->
     <section id="about" class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-2xl shadow-md p-6 sm:p-12 border border-slate-100 flex flex-col md:flex-row items-center gap-8">
